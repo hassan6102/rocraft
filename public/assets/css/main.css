@@ -856,9 +856,7 @@ body {
 
 /* Products Mega Menu 1 - Mobile */
 @media (max-width: 1199px) {
-  .navmenu .products-megamenu-1 {
-    /* Hide Desktop Mega Menu 1 in Mobile */
-  }
+ 
 
   .navmenu .products-megamenu-1 .desktop-megamenu {
     display: none;
@@ -1133,9 +1131,7 @@ body {
 
 /* Products Mega Menu 2 - Mobile */
 @media (max-width: 1199px) {
-  .navmenu .products-megamenu-2 {
-    /* Hide Desktop Mega Menu in Mobile */
-  }
+ 
 
   .navmenu .products-megamenu-2 .desktop-megamenu {
     display: none;
@@ -12081,12 +12077,6 @@ section,
   }
 }
 
-/*--------------------------------------------------------------
-# Starter Section Section
---------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
-}
 
 /*--------------------------------------------------------------
 # Widgets
@@ -12831,3 +12821,13 @@ section,
   width: 100px;
   object-fit: contain;
 }
+
+body {
+      background-color: var(--osma-bg) !important;
+      font-family: 'Tajawal', sans-serif !important; /* الخط الأساسي ناعم ومقروء */
+    }
+
+    /* تطبيق الخط الفني والبناتي على العناوين وأسماء المنتجات */
+    h1, h2, h3, h4, h5, h6, .product-title, .sitename, .slide-badge, .accordion-button {
+      font-family: 'El Messiri', sans-serif !important;
+    }

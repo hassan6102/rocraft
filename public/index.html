@@ -1,21 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>OSMA | Premium Bags</title>
-  <meta name="description" content="Premium Bags Collection by OSMA">
-  <meta name="keywords" content="OSMA, bags, handbags, backpacks, travel bags">
-
+  <title>رو كرافت | كروشيه وأعمال يدوية</title>
+  <meta name="description" content="اكتشف أجمل ملابس، شنط، وإكسسوارات الكروشيه اليدوية من رو كرافت.">
+  <meta name="keywords" content="Rocraft, crochet, handmade, كروشيه, هاند ميد, ملابس كروشيه, شنط كروشيه, كرافت, ملابس رجالي, ملابس أطفال">
   <link href="assets/img/icon.jpg" rel="icon">
   <link href="assets/img/icon.jpg" rel="apple-touch-icon">
 
+  <!-- إضافة خطوط جوجل (El Messiri للعناوين، و Tajawal للنصوص) -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Quicksand:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -27,20 +25,37 @@
   <link href="assets/vendor/drift-zoom/drift-basic.css" rel="stylesheet">
 
   <link href="assets/css/main.css" rel="stylesheet">
+  <link href="assets/css/rocraft-pro.css" rel="stylesheet">
 
-  <!-- OSMA Brand Colors Customization -->
-  <style>
+  <!-- تخصيص ألوان علامة رو كرافت -->
+<style>
     :root {
-      --osma-primary: #8b7355;
-      /* البني الترابي من اللوجو */
-      --osma-hover: #6a563f;
-      /* درجة أغمق للـ Hover */
-      --osma-bg: #f8f6f0;
-      /* الكريمي الفاتح للخلفية */
+      /* الألوان الجديدة اللي اخترتها */
+      --background-color: #F7F7F3;
+      --default-color: #485D6C;
+      --heading-color: #485D6C;
+      --accent-color: #ff7e4f;
+      --surface-color: #ffffff;
+      --contrast-color: #ffffff;
+      
+      --nav-color: #485D6C;
+      --nav-hover-color: #F09A7A;
+
+      /* السر هنا: ربطنا الألوان القديمة بالجديدة عشان السلايدر يفضل شغال */
+      --osma-primary: var(--accent-color); 
+      --osma-hover: var(--nav-hover-color);
+      --osma-bg: var(--background-color); 
     }
 
     body {
       background-color: var(--osma-bg) !important;
+      color: var(--default-color) !important;
+      font-family: 'Tajawal', sans-serif !important; /* الخط الناعم للقراءة */
+    }
+
+    /* تطبيق الخط الفني الكرييتف على العناوين فقط */
+    h1, h2, h3, h4, h5, h6, .product-title, .sitename, .slide-badge, .accordion-button {
+      font-family: 'El Messiri', sans-serif !important;
     }
 
     /* تغيير ألوان الأزرار والـ Badges للون البراند */
@@ -75,10 +90,16 @@
     }
 
     .slide-badge {
-      background-color: rgba(139, 115, 85, 0.1) !important;
+      /* لون شفاف من الخوخي يليق مع التصميم الجديد */
+      background-color: rgba(255, 126, 79, 0.1) !important; 
       color: var(--osma-primary) !important;
     }
-
+    
+    /* ألوان القائمة العلوية */
+    .header-nav nav ul li a {
+      color: var(--nav-color) !important;
+    }
+    
     .header-nav nav ul li a.active,
     .header-nav nav ul li a:hover {
       color: var(--osma-primary) !important;
@@ -95,6 +116,7 @@
       color: #fff !important;
     }
   </style>
+
   <style>
     /* كود الجذر الآمن لشريط المنتجات المتحرك */
     .osma-marquee-wrapper {
@@ -127,19 +149,20 @@
       animation-play-state: paused;
     }
 
+    /* تم التعديل لتتناسب مع الاتجاه العربي (RTL) */
     @keyframes marqueeLeft {
       0% {
         transform: translateX(0);
       }
 
       100% {
-        transform: translateX(-50%);
+        transform: translateX(50%);
       }
     }
 
     @keyframes marqueeRight {
       0% {
-        transform: translateX(-50%);
+        transform: translateX(50%);
       }
 
       100% {
@@ -156,7 +179,7 @@
 
 </head>
 
-<body class="index-page">
+<body class="index-page" dir="rtl" style="text-align: right;">
 
   <header id="header" class="header position-fixed w-100 top-0">
 
@@ -178,20 +201,18 @@
 
           <!-- Logo -->
           <a href="index.html" class="logo d-flex align-items-center text-decoration-none">
-            <!-- مسار لوجو أوسما الخاص بك -->
-            <img src="assets/img/icon - Copy.png" alt="OSMA Logo" class="logo-img">
+            <!-- مسار لوجو رو كرافت الخاص بك -->
+            <img src="assets/img/icon - Copy.png" alt="Rocraft Logo" class="logo-img">
           </a>
 
-          <!-- Desktop Navigation -->
           <!-- Desktop Navigation -->
           <div class="header-nav d-none d-xl-block">
             <nav id="navmenu" class="navmenu">
               <ul class="d-flex list-unstyled mb-0 gap-4">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="faq.html">FAQs</a></li>
-                <li><a href="return-policy.html">Return Policy</a></li>
-                <li><a href="shipping-info.html">Shipping Info</a></li>
+                <li><a href="index.html" class="active">الرئيسية</a></li>
+                <li><a href="about.html">من نحن</a></li>
+                <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                <li><a href="shipping-info.html">معلومات الشحن</a></li>
               </ul>
             </nav>
           </div>
@@ -211,7 +232,7 @@
       <div class="container py-3">
         <form class="search-form">
           <div class="input-group input-group-lg">
-            <input type="text" class="form-control border-0 bg-light" placeholder="Search for bags..."
+            <input type="text" class="form-control border-0 bg-light" placeholder="ابحث عن المنتجات..."
               style="box-shadow: none;">
             <button class="btn btn-dark px-4" type="submit">
               <i class="bi bi-search"></i>
@@ -223,17 +244,16 @@
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileNavSidebar" aria-labelledby="mobileNavLabel">
       <div class="offcanvas-header border-bottom py-3">
-        <h5 class="offcanvas-title fw-bold text-dark" id="mobileNavLabel">Menu</h5>
+        <h5 class="offcanvas-title fw-bold text-dark" id="mobileNavLabel">القائمة</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body px-4 py-4">
         <nav class="mobile-nav">
           <ul class="list-unstyled d-flex flex-column gap-3 mb-0 fs-5">
-            <li><a href="index.html" class="text-decoration-none text-dark active">Home</a></li>
-            <li><a href="about.html" class="text-decoration-none text-dark">About Us</a></li>
-            <li><a href="faq.html" class="text-decoration-none text-dark">FAQs</a></li>
-            <li><a href="return-policy.html" class="text-decoration-none text-dark">Return Policy</a></li>
-            <li><a href="shipping-info.html" class="text-decoration-none text-dark">Shipping Info</a></li>
+            <li><a href="index.html" class="text-decoration-none text-dark active">الرئيسية</a></li>
+            <li><a href="about.html" class="text-decoration-none text-dark">من نحن</a></li>
+            <li><a href="faq.html" class="text-decoration-none text-dark">الأسئلة الشائعة</a></li>
+            <li><a href="shipping-info.html" class="text-decoration-none text-dark">معلومات الشحن</a></li>
           </ul>
         </nav>
 
@@ -273,12 +293,11 @@
               <div class="row align-items-center">
                 <div class="col-lg-6 content-col" data-aos="fade-right" data-aos-delay="100">
                   <div class="slide-content">
-                    <span class="slide-badge">OSMA New Collection</span>
-                    <h1>Discover Our <span>Premium Bags</span> Collection</h1>
-                    <p>Explore our latest collection of high-quality bags. From classic leather handbags and crossbody
-                      bags to smart backpacks and travel luggage, find the perfect match for every occasion.</p>
+                    <span class="slide-badge">صنع يدوياً بحب من رو كرافت</span>
+                    <h1>صُنع بحب: <span>تشكيلة الكروشيه</span></h1>
+                    <p>اكتشف مجموعة رو كرافت للكروشيه اليدوي. قطع فريدة مصممة بكل حب من أفضل أنواع الخيوط لتناسب جميع الأذواق (ملابس رجالي، أطفالي، حريمي، شنط، وإكسسوارات).</p>
                     <div class="slide-cta">
-                      <a href="tos.html" class="btn btn-shop">Shop New Collection <i class="bi bi-arrow-right"></i></a>
+                      <a href="#product-list" class="btn btn-shop">تسوق الآن <i class="bi bi-arrow-left"></i></a>
                     </div>
                   </div>
                 </div>
@@ -287,38 +306,56 @@
                     <div class="product-grid">
                       <div class="product-item" data-aos="fade-up" data-aos-delay="300">
                         <div class="product-image">
-                          <img src="assets/img/new/KOTTY Mens Regular Fit Mide Rise Strachable Jeans.png"
+                          <img src="assets/img/product/product-9.png"
                             alt="Classic Handbag">
                         </div>
                         <div class="product-info">
-                          <h4>Handbag</h4>
+                          <h4>قطعة كروشيه</h4>
                           <span class="price">EGP 799</span>
                         </div>
                       </div>
                       <div class="product-item" data-aos="fade-up" data-aos-delay="400">
                         <div class="product-image">
-                          <img src="assets/img/new/BAGGY PULL-ON CARGO PANTS.png" alt="Travel Backpack">
+                          <img src="assets/img/product/فساتين-اطفال-كروشيه-16.png" alt="Travel Backpack">
                         </div>
                         <div class="product-info">
-                          <h4>Backpack</h4>
+                          <h4>ملابس أطفال</h4>
                           <span class="price">EGP 849</span>
                         </div>
                       </div>
                       <div class="product-item" data-aos="fade-up" data-aos-delay="500">
                         <div class="product-image">
-                          <img src="assets/img/new/download (5).png" alt="Crossbody Bag">
+                          <img src="assets/img/product/OIP (4).jpg" alt="Crossbody Bag">
                         </div>
                         <div class="product-info">
-                          <h4>Crossbody</h4>
+                          <h4>حقيبة كروشيه</h4>
                           <span class="price">EGP 399</span>
                         </div>
                       </div>
                       <div class="product-item" data-aos="fade-up" data-aos-delay="600">
                         <div class="product-image">
-                          <img src="assets/img/new/download (9).png" alt="Smart Laptop Bag">
+                          <img src="assets/img/product/product-1.webp" alt="Smart Laptop Bag">
                         </div>
                         <div class="product-info">
-                          <h4>Laptop Bag</h4>
+                          <h4>إكسسوارات</h4>
+                          <span class="price">EGP 459</span>
+                        </div>
+                      </div>
+                      <div class="product-item" data-aos="fade-up" data-aos-delay="600">
+                        <div class="product-image">
+                          <img src="assets/img/product/71Zjc6+SrhL._AC_UF894,1000_QL80_.png" alt="Smart Laptop Bag">
+                        </div>
+                        <div class="product-info">
+                          <h4>إكسسوارات</h4>
+                          <span class="price">EGP 459</span>
+                        </div>
+                      </div>
+                      <div class="product-item" data-aos="fade-up" data-aos-delay="600">
+                        <div class="product-image">
+                          <img src="assets/img/product/Screenshot 2026-06-23 184018.png" alt="Smart Laptop Bag">
+                        </div>
+                        <div class="product-info">
+                          <h4>إكسسوارات</h4>
                           <span class="price">EGP 459</span>
                         </div>
                       </div>
@@ -333,31 +370,30 @@
               <div class="row align-items-center">
                 <div class="col-lg-6 content-col" data-aos="fade-right" data-aos-delay="100">
                   <div class="slide-content">
-                    <span class="slide-badge">Limited Time Offer</span>
-                    <h1>Premium <span>Bags Sale</span> Up To 50% Off</h1>
-                    <p>Upgrade your style with premium bags at unbeatable prices. Enjoy huge discounts on handbags,
-                      backpacks, laptop bags, and everyday travel essentials.</p>
+                    <span class="slide-badge">عرض لفترة محدودة</span>
+                    <h1>خصم يصل إلى 50% <span>على منتجات الكروشيه</span></h1>
+                    <p>جدد إطلالتك مع أرقى منتجات الكروشيه اليدوية بأسعار لا تقبل المنافسة. استمتع بخصومات هائلة على الملابس، الشنط، والإكسسوارات اليومية.</p>
                     <div class="slide-cta">
-                      <a href="#" class="btn btn-shop">Shop the Sale <i class="bi bi-arrow-right"></i></a>
+                      <a href="#" class="btn btn-shop">تسوق العروض <i class="bi bi-arrow-left"></i></a>
                     </div>
                     <div class="countdown-container">
-                      <div class="countdown-label">Offer ends in:</div>
+                      <div class="countdown-label">ينتهي العرض خلال:</div>
                       <div class="countdown d-flex" data-count="2026/12/31">
                         <div>
                           <h3 class="count-days"></h3>
-                          <h4>Days</h4>
+                          <h4>أيام</h4>
                         </div>
                         <div>
                           <h3 class="count-hours"></h3>
-                          <h4>Hours</h4>
+                          <h4>ساعات</h4>
                         </div>
                         <div>
                           <h3 class="count-minutes"></h3>
-                          <h4>Minutes</h4>
+                          <h4>دقائق</h4>
                         </div>
                         <div>
                           <h3 class="count-seconds"></h3>
-                          <h4>Seconds</h4>
+                          <h4>ثواني</h4>
                         </div>
                       </div>
                     </div>
@@ -366,18 +402,18 @@
                 <div class="col-lg-6 image-col" data-aos="fade-left" data-aos-delay="200">
                   <div class="sale-showcase">
                     <div class="main-product">
-                      <img src="assets/img/new/download (10).jpeg" alt="Bags Sale">
+                      <img src="assets/img/product/only-onlelly3-4lifeblazertlrnoos-grau.webp" alt="Bags Sale">
                       <div class="discount-badge">
                         <span class="percent">50%</span>
-                        <span class="text">OFF</span>
+                        <span class="text">خصم</span>
                       </div>
                     </div>
                     <div class="floating-tag" data-aos="zoom-in" data-aos-delay="300">
                       <div class="tag-content">
-                        <span class="tag-label">Best Selling Bag</span>
+                        <span class="tag-label">المنتج الأكثر مبيعاً</span>
                         <span class="tag-price">
                           <span class="old-price">EGP 1299</span>
-                          <span class="new-price" style="color:#8b7355;">EGP 649</span>
+                          <span class="new-price" style="color:#d97700;">EGP 649</span>
                         </span>
                       </div>
                     </div>
@@ -390,25 +426,24 @@
               <div class="row align-items-center">
                 <div class="col-lg-6 content-col" data-aos="fade-right" data-aos-delay="100">
                   <div class="slide-content">
-                    <span class="slide-badge">OSMA Premium</span>
-                    <h1>Luxury <span>Handbags</span></h1>
-                    <p>Designed for elegance, durability, and modern style. Discover our premium collection of luxury
-                      bags crafted for your everyday journey and special occasions.</p>
+                    <span class="slide-badge">رو كرافت المميزة</span>
+                    <h1>ملابس وإكسسوارات <span>فاخرة</span></h1>
+                    <p>مصممة للأناقة، المتانة، والعصرية. اكتشف مجموعتنا الفاخرة من منتجات الكروشيه المصنوعة يدوياً لتناسب إطلالتك اليومية ومناسباتك الخاصة.</p>
                     <div class="slide-cta">
-                      <a href="#" class="btn btn-shop">Explore Collection <i class="bi bi-arrow-right"></i></a>
+                      <a href="#" class="btn btn-shop">تصفح التشكيلة <i class="bi bi-arrow-left"></i></a>
                     </div>
                     <div class="feature-list">
                       <div class="feature-item">
-                        <i class="bi bi-check-circle-fill" style="color:#8b7355;"></i>
-                        <span>Premium Leather & Fabric</span>
+                        <i class="bi bi-check-circle-fill" style="color:#e47f03;"></i>
+                        <span>خيوط ومواد عالية الجودة</span>
                       </div>
                       <div class="feature-item">
-                        <i class="bi bi-check-circle-fill" style="color:#8b7355;"></i>
-                        <span>Spacious & Practical</span>
+                        <i class="bi bi-check-circle-fill" style="color:#e47f03;"></i>
+                        <span>عملية ومريحة</span>
                       </div>
                       <div class="feature-item">
-                        <i class="bi bi-check-circle-fill" style="color:#8b7355;"></i>
-                        <span>Modern & Stylish Designs</span>
+                        <i class="bi bi-check-circle-fill" style="color:#e47f03;"></i>
+                        <span>تصميمات عصرية وأنيقة</span>
                       </div>
                     </div>
                   </div>
@@ -416,16 +451,16 @@
                 <div class="col-lg-6 image-col" data-aos="fade-left" data-aos-delay="200">
                   <div class="featured-showcase">
                     <div class="featured-image">
-                      <img src="assets/img/new/b5bfb41fa9d58400c40e2e4257757668.jpg" alt="Featured Bag">
-                      <div class="featured-badge" style="background:#8b7355;">
+                      <img src="assets/img/product/15776676-6625196075382551.webp" alt="Featured Bag">
+                      <div class="featured-badge" style="background:#e47f03;">
                         <i class="bi bi-star-fill"></i>
-                        <span>Best Seller</span>
+                        <span>الأكثر مبيعاً</span>
                       </div>
                     </div>
                     <div class="floating-review" data-aos="fade-up" data-aos-delay="300">
 
                       <div class="review-text">
-                        "Excellent quality, perfect size, and incredibly elegant."
+                        "جودة ممتازة، تفاصيل دقيقة، وأناقة لا توصف."
                       </div>
 
                     </div>
@@ -440,14 +475,20 @@
         </div>
     </section><!-- /Hero Section -->
 
+    <section class="rc-trust"><div class="container"><div class="row">
+      <div class="col-6 col-lg-3"><div class="rc-trust-item"><i class="bi bi-heart"></i><div><b>صنع يدوي بالكامل</b></div></div></div>
+      <div class="col-6 col-lg-3"><div class="rc-trust-item"><i class="bi bi-truck"></i><div><b>شحن سريع</b></div></div></div>
+      <div class="col-6 col-lg-3"><div class="rc-trust-item"><i class="bi bi-arrow-repeat"></i><div><b>استرجاع 14 يوم</b></div></div></div>
+      <div class="col-6 col-lg-3"><div class="rc-trust-item"><i class="bi bi-shield-check"></i><div><b>ضمان الجودة</b></div></div></div>
+    </div></div></section>
+
     <!-- Best Sellers Section -->
     <section id="best-sellers" class="best-sellers section" style="background-color: var(--osma-bg);">
 
       <!-- Section Title -->
       <div class="container section-title">
-        <h2>Best Selling Bags</h2>
-        <p>Discover our most popular bags, crafted with premium quality, modern designs, and maximum utility for every
-          journey.</p>
+        <h2>الأكثر طلباً</h2>
+        <p>القطع اللي عملاؤنا بيرجعوا يطلبوها تاني، مصنوعة يدوياً بأجود الخيوط.</p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -463,6 +504,7 @@
     </section><!-- /Best Sellers Section -->
 
     <section id="product-list" class="product-list section" style="background-color: var(--osma-bg);">
+      <div class="container section-title"><h2>كل المنتجات</h2><p>تصفح التشكيلة كاملة واطلب مباشرة عبر واتساب.</p></div>
       <div class="container">
 
         <!-- Product Filter -->
@@ -470,7 +512,7 @@
           <div class="col-12">
             <div class="product-filters mb-5 d-flex justify-content-center">
               <ul class="d-flex flex-wrap gap-2 list-unstyled">
-                <li class="filter-active" style="cursor: pointer;" data-filter="*">All Bags</li>
+                <li class="filter-active" style="cursor: pointer;" data-filter="*">كل المنتجات</li>
               </ul>
             </div>
           </div>
@@ -492,8 +534,8 @@
         </div>
 
         <div class="text-center mt-5">
-          <a href="tos.html" class="view-all-btn btn">
-            Shop All Bags <i class="bi bi-arrow-right"></i>
+          <a href="all-products.html" class="view-all-btn btn">
+            عرض كل المنتجات <i class="bi bi-arrow-left"></i>
           </a>
         </div>
 
@@ -557,67 +599,26 @@
 
   </main>
 
-  <footer id="footer" class="footer light-background text-center">
-    <div class="footer-main" style="background-color: var(--osma-bg); padding: 40px 0;">
-      <div class="container">
-        <div class="row gy-4">
-
-          <!-- 1. Brand & Social -->
-          <div class="col-md-6">
-            <a href="index.html" class="logo text-decoration-none">
-              <span class="sitename" style="color: var(--osma-primary); font-size: 28px; font-weight: 700;">OSMA
-                Bags</span>
-            </a>
-            <!-- ضفنا mx-auto عشان البلوكات اللي ليها عرض محدد تتسنتر -->
-            <p class="mt-3 text-muted mx-auto" style="max-width: 80%;">
-              Premium bags designed for elegance, style, and everyday functionality.
-            </p>
-            <!-- خلينا المسافات بين الأيقونات متساوية من الناحيتين باستخدام mx-2 -->
-            <div class="social-links mt-3">
-              <a href="https://www.facebook.com/share/18bEfZnFVM/?mibextid=wwXIfr" class="mx-2 text-dark fs-5"
-                aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-              <a href="https://www.instagram.com/osma_egy?igsi=cm90NTdnbWUwZ2Q1" class="mx-2 text-dark fs-5"
-                aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-              <a href="https://www.tiktok.com/@osma.egy?_r=1&_t=ZS-999WFKWcTu1" class="mx-2 text-dark fs-5"
-                aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
-            </div>
-          </div>
-
-          <!-- 2. Contact Info -->
-          <div class="col-md-6">
-            <h5 style="color: var(--osma-primary);">Contact Us</h5>
-            <ul class="list-unstyled mt-3" style="line-height: 2;">
-              <li><i class="bi bi-geo-alt me-2" style="color: var(--osma-primary);"></i> Cairo, Egypt</li>
-              <li><i class="bi bi-telephone me-2" style="color: var(--osma-primary);"></i> <span
-                  dir="ltr">+201111447123</span></li>
-              <li><i class="bi bi-envelope me-2" style="color: var(--osma-primary);"></i> osma@gmail.com</li>
-            </ul>
-          </div>
-
+    <footer id="footer" class="footer rc-footer">
+    <div class="container py-5"><div class="row gy-4">
+      <div class="col-lg-5">
+        <a href="index.html" class="sitename text-decoration-none" style="color:var(--osma-primary);font-size:30px;font-weight:700">رو كرافت</a>
+        <p class="mt-3 text-muted" style="max-width:420px">قطع كروشيه مصنوعة يدوياً بعناية، من الملابس والشنط للإكسسوارات، لتناسب استخدامك اليومي ومناسباتك.</p>
+        <div class="rc-soc mt-3">
+          <a href="https://www.facebook.com/share/18bEfZnFVM/?mibextid=wwXIfr" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.instagram.com/osma_egy?igsi=cm90NTdnbWUwZ2Q1" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://www.tiktok.com/@osma.egy?_r=1&_t=ZS-999WFKWcTu1" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
         </div>
       </div>
-    </div>
-
-    <!-- Bottom Footer -->
-    <div class="footer-bottom py-4" style="border-top: 1px solid rgba(0,0,0,0.1);">
-      <div class="container text-center">
-
-        <!-- حقوق النشر -->
-        <p class="mb-2 text-muted" style="font-size: 1.1rem;">
-          © <strong>OSMA</strong>. All Rights Reserved.
-        </p>
-
-        <!-- اسم المصمم -->
-        <div class="mb-3">
-          <span class="text-muted" style="font-size: 1.1rem;">Designed by</span><br>
-          <a href="https://hassan6102.github.io/portfolio/" class="text-decoration-none fw-bold mt-1 d-inline-block"
-            style="color: var(--osma-primary); font-size: 1rem; letter-spacing: 0.5px;">
-            Eng. Hassan Mohamed
-          </a>
-        </div>
-
-      </div>
-    </div>
+      <div class="col-6 col-lg-3"><h5>روابط سريعة</h5><ul>
+        <li><a href="index.html">الرئيسية</a></li><li><a href="about.html">من نحن</a></li>
+        <li><a href="faq.html">الأسئلة الشائعة</a></li><li><a href="shipping-info.html">معلومات الشحن</a></li></ul></div>
+      <div class="col-6 col-lg-4"><h5>تواصل معنا</h5><ul>
+        <li><i class="bi bi-geo-alt ms-2" style="color:var(--osma-primary)"></i>القاهرة، مصر</li>
+        <li><i class="bi bi-telephone ms-2" style="color:var(--osma-primary)"></i><a href="tel:+201111447123" dir="ltr">+201111447123</a></li>
+        <li><i class="bi bi-envelope ms-2" style="color:var(--osma-primary)"></i><a href="mailto:osma@gmail.com">osma@gmail.com</a></li></ul></div>
+    </div></div>
+    <div class="rc-copy text-center"><div class="container">© رو كرافت. جميع الحقوق محفوظة · تصميم <a href="https://hassan6102.github.io/portfolio/" class="fw-bold" style="color:var(--osma-primary)">Eng. Hassan Mohamed</a></div></div>
   </footer>
 
   <!-- Floating Customer Support Button (Modern & Clean) -->
@@ -629,11 +630,11 @@
     <div class="cs-menu" id="csMenu" role="menu">
       <a class="cs-item" href="https://wa.me/201111447123" target="_blank">
         <i class="bi bi-whatsapp" style="color: #25D366;"></i>
-        <span>WhatsApp</span>
+        <span>واتساب</span>
       </a>
-      <a class="cs-item" href="tel:+01111447123">
+      <a class="cs-item" href="tel:+201111447123">
         <i class="bi bi-telephone-fill" style="color: var(--osma-primary);"></i>
-        <span>Call Us</span>
+        <span>اتصل بنا</span>
       </a>
     </div>
   </div>
@@ -775,193 +776,41 @@
   <script src="assets/js/main.js"></script>
 
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    // تم إضافة doc و getDoc هنا عشان الإعلانات تشتغل
-    import { getFirestore, collection, getDocs, query, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { fetchProducts, loadAnnouncements, cardHtml, initOrderSheet } from "./assets/js/rocraft-shop.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyA1jQa2Bo9U7UBDRWjSLHbY8Q42xbOlA8k",
-      authDomain: "bag-store-app-55b26.firebaseapp.com",
-      projectId: "bag-store-app-55b26",
-      storageBucket: "bag-store-app-55b26.firebasestorage.app",
-      messagingSenderId: "876785296161",
-      appId: "1:876785296161:web:320fea9a586bf48f84d460",
-      measurementId: "G-M6YS1LFRCD"
-    };
+    let allProducts = [];
+    initOrderSheet((id) => allProducts.find((p) => p.id === id));
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    // ==========================================
-    // 1. دالة جلب الإعلانات وتشغيل شريط الأخبار
-    // ==========================================
-    async function loadAnnouncements() {
-      const annContainer = document.getElementById('dynamic-announcements');
-      if (!annContainer) return;
-
-      try {
-        const docRef = doc(db, 'settings', 'announcements');
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists() && docSnap.data().messages && docSnap.data().messages.length > 0) {
-          const messages = docSnap.data().messages;
-          let html = '';
-          messages.forEach(msg => {
-            html += `<div class="swiper-slide" style="font-size: 15px; font-weight: 500;">${msg}</div>`;
-          });
-          annContainer.innerHTML = html;
-        } else {
-          annContainer.innerHTML = `<div class="swiper-slide" style="font-size: 15px; font-weight: 500;">✨ أهلاً بكم في متجر OSMA Bags ✨</div>`;
-        }
-
-        setTimeout(() => {
-          if (typeof Swiper !== 'undefined') {
-             const sliderElem = document.querySelector('.announcement-slider');
-             if (sliderElem && sliderElem.swiper) {
-                 sliderElem.swiper.destroy(true, true);
-             }
-             new Swiper('.announcement-slider', {
-               loop: true,
-               speed: 600,
-               autoplay: { delay: 3000, disableOnInteraction: false },
-               slidesPerView: 1,
-               direction: "vertical"
-             });
-          }
-        }, 100);
-
-      } catch (error) {
-        console.error("Error loading announcements:", error);
-      }
-    }
-
-    // ==========================================
-    // 2. دالة جلب المنتجات (الكود الخاص بك)
-    // ==========================================
     async function loadProducts() {
-      const marqueeContainer = document.getElementById('osma-dual-marquees');
-      const swiperWrapper = document.getElementById('all-products-swiper');
-
-      if (swiperWrapper) swiperWrapper.innerHTML = '';
-
+      const marquee = document.getElementById('osma-dual-marquees');
+      const wrapper = document.getElementById('all-products-swiper');
       try {
-        const q = query(collection(db, 'products'));
-        const querySnapshot = await getDocs(q);
-
-        if (querySnapshot.empty) {
-          if (marqueeContainer) marqueeContainer.innerHTML = '<p class="text-center w-100">لا توجد منتجات حالياً.</p>';
+        allProducts = await fetchProducts();
+        if (!allProducts.length) {
+          if (marquee) marquee.innerHTML = '<p class="text-center w-100">لا توجد منتجات حالياً.</p>';
           return;
         }
-
-        let allProducts = [];
-        let swiperHtml = '';
-
-        querySnapshot.forEach((doc) => {
-          const p = doc.data();
-          p.id = doc.id;
-          allProducts.push(p);
-
-          const finalImg = p.imageUrl || p.image || 'assets/img/icon - Copy.png';
-          const hasDiscount = p.oldPrice && p.oldPrice > p.price;
-          const priceHtml = hasDiscount
-            ? `<span class="current-price">EGP ${p.price}</span> <span class="old-price" style="text-decoration: line-through; color: #999; font-size: 14px; margin-left: 5px;">EGP ${p.oldPrice}</span>`
-            : `<span class="current-price">EGP ${p.price}</span>`;
-          const badgeHtml = hasDiscount
-            ? `<span class="badge sale" style="background: var(--osma-primary); position: absolute; top: 10px; left: 10px; z-index: 2;">sale</span>`
-            : ``;
-          const waLink = `https://wa.me/201111447123?text=${encodeURIComponent('أهلاً، عايز أطلب الشنطة دي: ' + p.name + ' - كود المنتج: ' + p.sku)}`;
-          
-          swiperHtml += `
-            <div class="swiper-slide filter-${p.category ? p.category.replace(/\s+/g, '') : 'all'}">
-              <div class="product-card">
-                <div class="product-image position-relative">
-                  ${badgeHtml}
-                  <img src="${finalImg}" alt="${p.name}" style="aspect-ratio: 1; object-fit: cover; width: 100%;">
-                  <div class="product-overlay">
-                    <a href="${waLink}" target="_blank" class="btn-cart" style="text-decoration:none;"><i class="bi bi-whatsapp"></i>  Order via WhatsApp </a>
-                    <div class="product-actions">
-                      <a href="product-details.html?id=${p.id}" class="action-btn"><i class="bi bi-eye"></i></a>
-                    </div>
-                  </div>
-                </div>
-                <div class="product-info text-center mt-3">
-                  <h5 class="product-title"><a href="product-details.html?id=${p.id}">${p.name}</a></h5>
-                  <div class="product-price mt-2">${priceHtml}</div>
-                </div>
-              </div>
-            </div>
-          `;
-        });
-
-        if (swiperWrapper) {
-          swiperWrapper.innerHTML = swiperHtml;
+        if (wrapper) {
+          wrapper.innerHTML = allProducts.map((p) => `<div class="swiper-slide">${cardHtml(p)}</div>`).join('');
           setTimeout(() => {
-            if (typeof Swiper !== 'undefined') {
-              const swiper = new Swiper('.mySwiper', {
-                slidesPerView: 1, spaceBetween: 20, observer: true, observeParents: true,
-                navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-                pagination: { el: '.swiper-pagination', clickable: true },
-                breakpoints: { 640: { slidesPerView: 2 }, 768: { slidesPerView: 3 }, 1024: { slidesPerView: 4 } }
-              });
-            }
+            if (typeof Swiper === 'undefined') return;
+            new Swiper('.mySwiper', {
+              slidesPerView: 2, spaceBetween: 12, observer: true, observeParents: true,
+              navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+              pagination: { el: '.swiper-pagination', clickable: true },
+              breakpoints: { 576: { slidesPerView: 3 }, 992: { slidesPerView: 4, spaceBetween: 16 }, 1200: { slidesPerView: 5, spaceBetween: 16 } }
+            });
           }, 100);
         }
-
-        if (marqueeContainer && allProducts.length > 0) {
+        if (marquee) {
           const top10 = allProducts.slice(0, 10);
           const row1 = top10.slice(0, 5);
           const row2 = top10.length > 5 ? top10.slice(5, 10) : row1;
-
-          const generateCards = (items) => {
-            return items.map(p => {
-              const finalImg = p.imageUrl || p.image || 'assets/img/icon - Copy.png';
-              const hasDiscount = p.oldPrice && p.oldPrice > p.price;
-              const priceHtml = hasDiscount
-                ? `<span class="current-price">EGP ${p.price}</span> <span class="old-price" style="text-decoration: line-through; color: #999; font-size: 14px; margin-left: 5px;">EGP ${p.oldPrice}</span>`
-                : `<span class="current-price">EGP ${p.price}</span>`;
-              const waLink = `https://wa.me/201111447123?text=${encodeURIComponent('أهلاً، عايز أطلب الشنطة دي: ' + p.name + ' - كود المنتج: ' + p.sku)}`;
-              return `
-                <div class="osma-marquee-card">
-                  <div class="product-card" style="margin: 0; height: 100%;">
-                    <div class="product-image position-relative">
-                      <img src="${finalImg}" alt="${p.name}" style="aspect-ratio: 1; object-fit: cover; width: 100%;">
-                      <div class="product-overlay">
-                        <div class="product-actions">
-                          <a href="product-details.html?id=${p.id}" class="action-btn" title="التفاصيل"><i class="bi bi-eye"></i></a>
-                          <a href="${waLink}" target="_blank" class="action-btn" title="واتساب"><i class="bi bi-whatsapp"></i></a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="product-details text-center mt-3">
-                      <div class="product-category" style="color: #666; font-size: 0.9rem;">${p.category || 'شنط'}</div>
-                      <h4 class="product-title mt-1 mb-2"><a href="product-details.html?id=${p.id}" style="color: #222; text-decoration: none; font-weight: 600;">${p.name}</a></h4>
-                      <div class="product-price" style="color: var(--osma-primary); font-weight: 700; font-size: 1.1rem;">${priceHtml}</div>
-                    </div>
-                  </div>
-                </div>
-              `;
-            }).join('');
-          };
-
-          const html1 = generateCards(row1) + generateCards(row1);
-          const html2 = generateCards(row2) + generateCards(row2);
-
-          marqueeContainer.innerHTML = `
-            <div class="osma-marquee-track move-left">
-               ${html1}
-            </div>
-            <div class="osma-marquee-track move-right">
-               ${html2}
-            </div>
-          `;
+          const gen = (items) => items.map((p) => `<div class="osma-marquee-card">${cardHtml(p)}</div>`).join('');
+          marquee.innerHTML = `<div class="osma-marquee-track move-left">${gen(row1) + gen(row1)}</div><div class="osma-marquee-track move-right">${gen(row2) + gen(row2)}</div>`;
         }
-
-      } catch (error) {
-        console.error("Error loading products: ", error);
-      }
+      } catch (e) { console.error('Error loading products:', e); }
     }
-
-    // استدعاء الدوال عشان تشتغل أول ما الصفحة تفتح
     loadAnnouncements();
     loadProducts();
   </script>

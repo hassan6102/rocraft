@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Faq - FashionStore </title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+  <title>الأسئلة الشائعة - متجر رو كرافت</title>
+  <meta name="description" content="الأسئلة الشائعة حول متجر رو كرافت المتخصص في منتجات الكروشيه والأعمال اليدوية.">
+  <meta name="keywords" content="رو كرافت, كروشيه, أسئلة شائعة, هاند ميد, ملابس كروشيه">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Fonts -->
+  <!-- إضافة خطوط جوجل العربية -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700;800&display=swap"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -28,257 +30,94 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-  
-</head>
-
-<body class="faq-page">
-
-  <header id="header" class="header position-fixed w-100 top-0">
-
-    <!-- Announcement Bar -->
-    <div class="announcement-bar py-2" style="background-color: var(--osma-primary); color: #fff;">
-      <div class="container-fluid container-xl">
-        <div class="announcement-slider swiper">
-          <div class="swiper-wrapper text-center" id="dynamic-announcements">
-            <div class="swiper-slide" style="font-size: 14px;">جاري تحميل العروض...</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Main Header -->
-    <div class="main-header bg-white shadow-sm">
-      <div class="container-fluid container-xl">
-        <div class="d-flex py-3 align-items-center justify-content-between">
-
-          <!-- Logo -->
-          <a href="index.html" class="logo d-flex align-items-center text-decoration-none">
-            <img src="assets/img/icon - Copy.png" alt="dobleer Logo" class="logo-img">
-          </a>
-
-          <!-- Desktop Navigation -->
-          <div class="header-nav d-none d-xl-block">
-            <nav id="navmenu" class="navmenu">
-              <ul class="d-flex list-unstyled mb-0 gap-4">
-                <li><a href="index.html" >Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="faq.html" class="active">FAQ</a></li>
-                <li><a href="return-policy.html">Return Policy</a></li>
-                <li><a href="shiping-info.html">Shipping Information</a></li>
-              </ul>
-            </nav>
-          </div>
-
-          <!-- Icons & Actions -->
-          <div class="header-actions d-flex align-items-center gap-3">
-            <!-- Search Toggle -->
-
-
-            <!-- Mobile Navigation Toggle (Triggers Offcanvas) -->
-            <!-- Mobile Navigation Toggle (Triggers Offcanvas) -->
-            <i class="custom-nav-toggle d-xl-none bi bi-list fs-2 text-dark cursor-pointer" data-bs-toggle="offcanvas"
-              data-bs-target="#mobileNavSidebar" aria-controls="mobileNavSidebar"></i>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <!-- Search Form Dropdown (Collapse) -->
-    <div class="collapse position-absolute w-100 bg-white shadow-sm" id="mobileSearch" style="top: 100%; z-index: -1;">
-      <div class="container py-3">
-        <form class="search-form">
-          <div class="input-group input-group-lg">
-            <input type="text" class="form-control border-0 bg-light" placeholder="Search for products..."
-              style="box-shadow: none;">
-            <button class="btn btn-dark px-4" type="submit">
-              <i class="bi bi-search"></i>
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <!-- Premium Mobile Sidebar Menu (Offcanvas) -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileNavSidebar" aria-labelledby="mobileNavLabel">
-      <div class="offcanvas-header border-bottom py-3">
-        <h5 class="offcanvas-title fw-bold text-dark" id="mobileNavLabel">Menu</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body px-4 py-4">
-        <nav class="mobile-nav">
-          <ul class="list-unstyled d-flex flex-column gap-3 mb-0 fs-5">
-            <li><a href="index.html" class="text-decoration-none text-dark active">Home</a></li>
-            <li><a href="about.html" class="text-decoration-none text-dark">About</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="return-policy.html">Return Policy</a></li>
-            <li><a href="shipping-info.html">Shipping Information</a></li>
-          </ul>
-        </nav>
-
-        
-      </div>
-    </div>
-
-  </header>
-
-  <main class="main">
-
-   
-
-   <!-- Faq Section -->
-    <section class="faq-9 faq section" id="faq">
-
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-5" data-aos="fade-up">
-            <h2 class="faq-title" style="color: var(--osma-primary, #8b7355);">Have a question? Check out our FAQ</h2>
-            <p class="faq-description">Learn more about our premium bag collections, differences between Original and Mirror quality, shipping details, and how to care for your new bag.</p>
-            <div class="faq-arrow d-none d-lg-block" data-aos="fade-up" data-aos-delay="200" style="color: var(--osma-primary, #8b7355);">
-              <svg class="faq-arrow" width="200" height="211" viewBox="0 0 200 211" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M198.804 194.488C189.279 189.596 179.529 185.52 169.407 182.07L169.384 182.049C169.227 181.994 169.07 181.939 168.912 181.884C166.669 181.139 165.906 184.546 167.669 185.615C174.053 189.473 182.761 191.837 189.146 195.695C156.603 195.912 119.781 196.591 91.266 179.049C62.5221 161.368 48.1094 130.695 56.934 98.891C84.5539 98.7247 112.556 84.0176 129.508 62.667C136.396 53.9724 146.193 35.1448 129.773 30.2717C114.292 25.6624 93.7109 41.8875 83.1971 51.3147C70.1109 63.039 59.63 78.433 54.2039 95.0087C52.1221 94.9842 50.0776 94.8683 48.0703 94.6608C30.1803 92.8027 11.2197 83.6338 5.44902 65.1074C-1.88449 41.5699 14.4994 19.0183 27.9202 1.56641C28.6411 0.625793 27.2862 -0.561638 26.5419 0.358501C13.4588 16.4098 -0.221091 34.5242 0.896608 56.5659C1.8218 74.6941 14.221 87.9401 30.4121 94.2058C37.7076 97.0203 45.3454 98.5003 53.0334 98.8449C47.8679 117.532 49.2961 137.487 60.7729 155.283C87.7615 197.081 139.616 201.147 184.786 201.155L174.332 206.827C172.119 208.033 174.345 211.287 176.537 210.105C182.06 207.125 187.582 204.122 193.084 201.144C193.346 201.147 195.161 199.887 195.423 199.868C197.08 198.548 193.084 201.144 195.528 199.81C196.688 199.192 197.846 198.552 199.006 197.935C200.397 197.167 200.007 195.087 198.804 194.488ZM60.8213 88.0427C67.6894 72.648 78.8538 59.1566 92.1207 49.0388C98.8475 43.9065 106.334 39.2953 114.188 36.1439C117.295 34.8947 120.798 33.6609 124.168 33.635C134.365 33.5511 136.354 42.9911 132.638 51.031C120.47 77.4222 86.8639 93.9837 58.0983 94.9666C58.8971 92.6666 59.783 90.3603 60.8213 88.0427Z" fill="currentColor"></path>
-              </svg>
-            </div>
-          </div>
-
-          <div class="col-lg-7" data-aos="fade-up" data-aos-delay="300">
-            <div class="faq-container">
-
-              <div class="faq-item faq-active">
-                <h3 style="color: var(--osma-primary, #8b7355);">What is the difference between Original and Mirror quality bags?</h3>
-                <div class="faq-content">
-                  <p>Original bags are authentic pieces sourced directly from authorized brand distributors. Mirror quality bags are exact 1:1 replicas made with identical materials, genuine leather, and precise hardware to offer the same luxury feel at a fraction of the cost.</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-              <div class="faq-item">
-                <h3>What does High Copy mean?</h3>
-                <div class="faq-content">
-                  <p>High Copy bags provide an excellent balance of style and affordability. They feature great craftsmanship and durability for everyday use, making them a practical choice if you want trendy designs without the premium price tag.</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-              <div class="faq-item">
-                <h3>Are the product images real?</h3>
-                <div class="faq-content">
-                  <p>Yes, absolutely! We ensure that all product photos displayed on our website are actual images of the bags you will receive. We do not use stock photos, so you know exactly what you are purchasing.</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-              <div class="faq-item">
-                <h3>How long does delivery take?</h3>
-                <div class="faq-content">
-                  <p>Delivery times depend on your location. Standard local shipping typically takes 2 to 4 business days. We will provide a tracking link as soon as your order is dispatched so you can follow its journey.</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-              <div class="faq-item">
-                <h3>Can I return or exchange a bag if I don't like it?</h3>
-                <div class="faq-content">
-                  <p>Yes, customer satisfaction is our priority. You can return or exchange the bag within 14 days of receiving it, provided it is unused, in its original condition, and has all tags and packaging intact.</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-              <div class="faq-item">
-                <h3>How should I care for my leather bags?</h3>
-                <div class="faq-content">
-                  <p>To keep your leather bags looking pristine, avoid prolonged exposure to direct sunlight and water. Clean them gently with a soft, dry cloth, and store them in the provided dust bag when not in use to maintain their shape and texture.</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section><!-- /Faq Section -->
-
-<footer id="footer" class="footer light-background text-center">
-  <div class="footer-main" style="background-color: var(--osma-bg); padding: 40px 0;">
-    <div class="container">
-      <div class="row gy-4">
-
-        <!-- 1. Brand & Social -->
-        <div class="col-md-6">
-          <a href="index.html" class="logo text-decoration-none">
-            <span class="sitename" style="color: var(--osma-primary); font-size: 28px; font-weight: 700;">OSMA Bags</span>
-          </a>
-          <!-- ضفنا mx-auto عشان البلوكات اللي ليها عرض محدد تتسنتر -->
-          <p class="mt-3 text-muted mx-auto" style="max-width: 80%;">
-            Premium bags designed for elegance, style, and everyday functionality.
-          </p>
-          <!-- خلينا المسافات بين الأيقونات متساوية من الناحيتين باستخدام mx-2 -->
-          <div class="social-links mt-3">
-            <a href="https://www.facebook.com/share/18bEfZnFVM/?mibextid=wwXIfr" class="mx-2 text-dark fs-5" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-            <a href="https://www.instagram.com/osma_egy?igsi=cm90NTdnbWUwZ2Q1" class="mx-2 text-dark fs-5" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-            <a href="https://www.tiktok.com/@osma.egy?_r=1&_t=ZS-999WFKWcTu1" class="mx-2 text-dark fs-5" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
-          </div>
-        </div>
-
-        <!-- 2. Contact Info -->
-        <div class="col-md-6">
-          <h5 style="color: var(--osma-primary);">Contact Us</h5>
-          <ul class="list-unstyled mt-3" style="line-height: 2;">
-            <li><i class="bi bi-geo-alt me-2" style="color: var(--osma-primary);"></i> Cairo, Egypt</li>
-            <li><i class="bi bi-telephone me-2" style="color: var(--osma-primary);"></i> <span dir="ltr">+201111447123</span></li>
-            <li><i class="bi bi-envelope me-2" style="color: var(--osma-primary);"></i> osma@gmail.com</li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- Bottom Footer -->
-  <div class="footer-bottom py-4" style="border-top: 1px solid rgba(0,0,0,0.1);">
-    <div class="container text-center">
-      
-      <!-- حقوق النشر -->
-      <p class="mb-2 text-muted" style="font-size: 1.1rem;">
-        © <strong>OSMA</strong>. All Rights Reserved.
-      </p>
-      
-      <!-- اسم المصمم -->
-      <div class="mb-3">
-        <span class="text-muted" style="font-size: 1.1rem;">Designed by</span><br>
-        <a href="https://hassan6102.github.io/portfolio/" class="text-decoration-none fw-bold mt-1 d-inline-block" style="color: var(--osma-primary); font-size: 1rem; letter-spacing: 0.5px;">
-          Eng. Hassan Mohamed
-        </a>
-      </div>
-      
-    </div>
-  </div>
-</footer>
- <!-- Floating Customer Support Button (Modern & Clean) -->
-  <div class="cs-float" id="csFloat">
-    <button class="cs-main" id="csMain" aria-expanded="false" aria-label="Customer Support">
-      <i class="bi bi-chat-dots-fill cs-icon"></i>
-    </button>
-
-    <div class="cs-menu" id="csMenu" role="menu">
-      <a class="cs-item" href="https://wa.me/201111447123" target="_blank">
-        <i class="bi bi-whatsapp" style="color: #25D366;"></i>
-        <span>WhatsApp</span>
-      </a>
-      <a class="cs-item" href="tel:+201111447123">
-        <i class="bi bi-telephone-fill" style="color: var(--osma-primary);"></i>
-        <span>Call Us</span>
-      </a>
-    </div>
-  </div>
-
   <style>
+    :root {
+      /* الألوان الجديدة */
+      --background-color: #F7F7F3;
+      --default-color: #485D6C;
+      --heading-color: #485D6C;
+      --accent-color: #ff7e4f;
+      --surface-color: #ffffff;
+      --contrast-color: #ffffff;
+
+      --nav-color: #485D6C;
+      --nav-hover-color: #F09A7A;
+
+      /* التوافق مع الكلاسات القديمة */
+      --osma-primary: var(--accent-color);
+      --osma-hover: var(--nav-hover-color);
+      --osma-bg: var(--background-color);
+    }
+
+    body {
+      background-color: var(--osma-bg) !important;
+      color: var(--default-color);
+      font-family: 'Tajawal', sans-serif;
+      text-align: right;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .faq-title {
+      font-family: 'El Messiri', sans-serif;
+      color: var(--heading-color) !important;
+    }
+
+    .header-nav nav ul li a {
+      color: var(--nav-color);
+    }
+
+    .header-nav nav ul li a.active,
+    .header-nav nav ul li a:hover {
+      color: var(--osma-primary) !important;
+    }
+
+    /* تنسيق البانر العلوي (Hero) */
+    .page-header-banner {
+      background: linear-gradient(rgba(247, 247, 243, 0.9), rgba(247, 247, 243, 0.9)), url('assets/img/hero-bg.webp') center/cover;
+      padding: 60px 0 40px;
+      border-bottom: 1px solid rgba(72, 93, 108, 0.1);
+    }
+
+    /* FAQ Custom Styling */
+    .faq-container .faq-item {
+      background-color: var(--surface-color);
+      border: 1px solid rgba(72, 93, 108, 0.1);
+      border-radius: 12px;
+      margin-bottom: 15px;
+      padding: 20px;
+      transition: 0.3s;
+    }
+
+    .faq-container .faq-item h3 {
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--osma-primary) !important;
+      margin-bottom: 0;
+      cursor: pointer;
+    }
+
+    .faq-container .faq-item .faq-content p {
+      color: var(--default-color);
+      margin-top: 15px;
+      margin-bottom: 0;
+      opacity: 0.9;
+      line-height: 1.8;
+    }
+
+    .faq-container .faq-item .faq-toggle {
+      color: var(--osma-primary);
+    }
+
     /* Clean Support Button CSS */
     .cs-float {
       position: fixed;
       right: 20px;
+      /* رجعناها لليمين هنا */
       bottom: 20px;
       z-index: 9999;
     }
@@ -287,14 +126,14 @@
       width: 55px;
       height: 55px;
       border-radius: 50%;
-      background-color: #8b7355;
-      color: white;
+      background-color: var(--osma-primary);
+      color: var(--contrast-color);
       border: none;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 4px 15px rgba(139, 115, 85, 0.3);
+      box-shadow: 0 4px 15px rgba(255, 126, 79, 0.3);
       transition: transform 0.3s ease, background-color 0.3s ease;
     }
 
@@ -303,23 +142,22 @@
       background-color: var(--osma-hover);
     }
 
-.cs-icon {
+    .cs-icon {
       font-size: 24px;
       transition: transform 0.3s ease;
-      pointer-events: none; /* إضافة السطر ده */
+      pointer-events: none;
     }
 
     .cs-float.open .cs-icon {
       transform: rotate(360deg);
-      content: "\F62A"; /* تتغير لعلامة X في البوتستراب أيكونز لو حابب تظبطها بالجافاسكريبت، بس الدوران شغال كويس */
     }
 
     .cs-menu {
       position: absolute;
       right: 0;
+      /* ورجعنا القائمة تفتح من اليمين هنا */
       bottom: 70px;
-      background: #ffffff;
-      
+      background: var(--surface-color);
       border-radius: 12px;
       padding: 10px 0;
       width: 180px;
@@ -342,7 +180,7 @@
       gap: 12px;
       padding: 10px 20px;
       text-decoration: none;
-      color: #333;
+      color: var(--default-color);
       font-weight: 500;
       font-size: 15px;
       transition: background-color 0.2s ease;
@@ -353,50 +191,288 @@
     }
 
     .cs-item:hover {
-      background-color: #f8f9fa;
+      background-color: rgba(247, 247, 243, 0.8);
       color: var(--osma-primary);
     }
   </style>
+</head>
+
+<body class="faq-page">
+
+  <header id="header" class="header position-fixed w-100 top-0" style="z-index: 1030;">
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar py-2" style="background-color: var(--osma-primary); color: var(--contrast-color);">
+      <div class="container-fluid container-xl">
+        <div class="announcement-slider swiper">
+          <div class="swiper-wrapper text-center" id="dynamic-announcements">
+            <div class="swiper-slide" style="font-size: 14px;">جاري تحميل العروض...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Header -->
+    <div class="main-header shadow-sm" style="background-color: var(--surface-color);">
+      <div class="container-fluid container-xl">
+        <div class="d-flex py-3 align-items-center justify-content-between">
+
+          <!-- Logo -->
+          <a href="index.html" class="logo d-flex align-items-center text-decoration-none">
+            <img src="assets/img/icon - Copy.png" alt="Rocraft Logo" class="logo-img">
+          </a>
+
+          <!-- Desktop Navigation -->
+          <div class="header-nav d-none d-xl-block">
+            <nav id="navmenu" class="navmenu">
+              <ul class="d-flex list-unstyled mb-0 gap-4">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="about.html">من نحن</a></li>
+                <li><a href="faq.html" class="active">الأسئلة الشائعة</a></li>
+                <li><a href="shipping-info.html">معلومات الشحن</a></li>
+              </ul>
+            </nav>
+          </div>
+
+          <!-- Icons & Actions -->
+          <div class="header-actions d-flex align-items-center gap-3">
+            <!-- Mobile Navigation Toggle -->
+            <i class="custom-nav-toggle d-xl-none bi bi-list fs-2 cursor-pointer" style="color: var(--default-color);"
+              data-bs-toggle="offcanvas" data-bs-target="#mobileNavSidebar" aria-controls="mobileNavSidebar"></i>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Sidebar Menu -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileNavSidebar" aria-labelledby="mobileNavLabel"
+      style="background-color: var(--surface-color);">
+      <div class="offcanvas-header border-bottom py-3">
+        <h5 class="offcanvas-title fw-bold" style="color: var(--heading-color);" id="mobileNavLabel">القائمة</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body px-4 py-4">
+        <nav class="mobile-nav">
+          <ul class="list-unstyled d-flex flex-column gap-3 mb-0 fs-5">
+            <li><a href="index.html" class="text-decoration-none" style="color: var(--default-color);">الرئيسية</a></li>
+            <li><a href="about.html" class="text-decoration-none" style="color: var(--default-color);">من نحن</a></li>
+            <li><a href="faq.html" class="text-decoration-none active" style="color: var(--osma-primary);">الأسئلة
+                الشائعة</a></li>
+            <li><a href="shipping-info.html" class="text-decoration-none" style="color: var(--default-color);">معلومات
+                الشحن</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="main" style="padding-top: 1px;">
+
+
+
+    <!-- Faq Section -->
+    <section class="faq-9 faq section py-5" id="faq">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-5 mb-4" data-aos="fade-up">
+            <h2 class="faq-title display-6 fw-bold mb-3">لديك استفسار؟ تفقد الأسئلة الشائعة</h2>
+            <p class="faq-description fs-5" style="color: var(--default-color); opacity: 0.9; line-height: 1.8;">
+              تعرف على المزيد حول منتجات الكروشيه اليدوية، طرق العناية بها، وتفاصيل الشحن والطلب المخصص من متجر رو
+              كرافت.
+            </p>
+            <div class="faq-arrow d-none d-lg-block mt-4" data-aos="fade-up" data-aos-delay="200"
+              style="color: var(--osma-primary);">
+              <svg width="200" height="211" viewBox="0 0 200 211" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M198.804 194.488C189.279 189.596 179.529 185.52 169.407 182.07L169.384 182.049C169.227 181.994 169.07 181.939 168.912 181.884C166.669 181.139 165.906 184.546 167.669 185.615C174.053 189.473 182.761 191.837 189.146 195.695C156.603 195.912 119.781 196.591 91.266 179.049C62.5221 161.368 48.1094 130.695 56.934 98.891C84.5539 98.7247 112.556 84.0176 129.508 62.667C136.396 53.9724 146.193 35.1448 129.773 30.2717C114.292 25.6624 93.7109 41.8875 83.1971 51.3147C70.1109 63.039 59.63 78.433 54.2039 95.0087C52.1221 94.9842 50.0776 94.8683 48.0703 94.6608C30.1803 92.8027 11.2197 83.6338 5.44902 65.1074C-1.88449 41.5699 14.4994 19.0183 27.9202 1.56641C28.6411 0.625793 27.2862 -0.561638 26.5419 0.358501C13.4588 16.4098 -0.221091 34.5242 0.896608 56.5659C1.8218 74.6941 14.221 87.9401 30.4121 94.2058C37.7076 97.0203 45.3454 98.5003 53.0334 98.8449C47.8679 117.532 49.2961 137.487 60.7729 155.283C87.7615 197.081 139.616 201.147 184.786 201.155L174.332 206.827C172.119 208.033 174.345 211.287 176.537 210.105C182.06 207.125 187.582 204.122 193.084 201.144C193.346 201.147 195.161 199.887 195.423 199.868C197.08 198.548 193.084 201.144 195.528 199.81C196.688 199.192 197.846 198.552 199.006 197.935C200.397 197.167 200.007 195.087 198.804 194.488ZM60.8213 88.0427C67.6894 72.648 78.8538 59.1566 92.1207 49.0388C98.8475 43.9065 106.334 39.2953 114.188 36.1439C117.295 34.8947 120.798 33.6609 124.168 33.635C134.365 33.5511 136.354 42.9911 132.638 51.031C120.47 77.4222 86.8639 93.9837 58.0983 94.9666C58.8971 92.6666 59.783 90.3603 60.8213 88.0427Z"
+                  fill="currentColor"></path>
+              </svg>
+            </div>
+          </div>
+
+          <div class="col-lg-7" data-aos="fade-up" data-aos-delay="300">
+            <div class="faq-container">
+
+              <div class="faq-item faq-active">
+                <h3>ما هي المواد المستخدمة في منتجات الكروشيه الخاصة بكم؟</h3>
+                <div class="faq-content">
+                  <p>نحن نستخدم أفضل أنواع الخيوط القطنية والصوفية المستوردة والمحلية عالية الجودة لضمان نعومة، راحة،
+                    ومتانة جميع منتجاتنا لتتحمل الاستخدام اليومي وتحافظ على رونقها.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-down"></i>
+              </div>
+
+              <div class="faq-item">
+                <h3>هل يمكنني طلب تصميم مخصص غير معروض في المتجر؟</h3>
+                <div class="faq-content">
+                  <p>بالتأكيد! نرحب جداً بطلبات التفصيل الخاصة. يمكنك التواصل معنا عبر الواتساب وإرسال صورة أو فكرة
+                    للتصميم الذي ترغبين به (سواء ملابس، حقيبة، أو إكسسوار)، وسنقوم بتنفيذه بكل دقة وحب.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-down"></i>
+              </div>
+
+              <div class="faq-item">
+                <h3>هل صور المنتجات على الموقع حقيقية؟</h3>
+                <div class="faq-content">
+                  <p>نعم، 100%. جميع الصور المعروضة في متجرنا هي صور حقيقية لمنتجاتنا تم تصويرها بعناية لتوضيح تفاصيل
+                    الغرز وجودة العمل اليدوي، لتكوني على يقين تام بما ستستلمينه.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-down"></i>
+              </div>
+
+              <div class="faq-item">
+                <h3>كم يستغرق تجهيز وتوصيل الطلب؟</h3>
+                <div class="faq-content">
+                  <p>لأن منتجاتنا تُصنع يدوياً قطعة بقطعة، قد يستغرق تنفيذ الطلب من 3 إلى 7 أيام عمل. تضاف إليها مدة
+                    الشحن التي تتراوح بين يومين إلى 4 أيام حسب محافظتك.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-down"></i>
+              </div>
+
+              <div class="faq-item">
+                <h3>هل توجد سياسة للاستبدال والاسترجاع؟</h3>
+                <div class="faq-content">
+                  <p>نعم، رضاكم هو غايتنا. يمكنك استبدال أو استرجاع المنتج خلال 14 يوماً من استلامه بشرط أن يكون بحالته
+                    الأصلية ولم يتم استخدامه. يُرجى ملاحظة أن "الطلبات المخصصة" قد لا تخضع لنفس السياسة إلا في حالة وجود
+                    عيب صناعة.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-down"></i>
+              </div>
+
+              <div class="faq-item">
+                <h3>كيف أعتني بمنتجات الكروشيه للحفاظ عليها؟</h3>
+                <div class="faq-content">
+                  <p>للحفاظ على شكل ولون منتجات الكروشيه، نوصي بغسلها يدوياً بالماء البارد وقليل من الصابون الخفيف (يفضل
+                    شامبو أطفال). تجنبي العصر الشديد وتجفيفها في الغسالة، بل قومي بفردها أفقياً على منشفة جافة بعيداً عن
+                    أشعة الشمس المباشرة.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-down"></i>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer" class="footer text-center" style="background-color: var(--osma-bg);">
+    <div class="footer-main" style="padding: 40px 0;">
+      <div class="container">
+        <div class="row gy-4">
+
+          <!-- 1. Brand & Social -->
+          <div class="col-md-6">
+            <a href="index.html" class="logo text-decoration-none">
+              <span class="sitename" style="color: var(--osma-primary); font-size: 28px; font-weight: 700;">رو
+                كرافت</span>
+            </a>
+            <p class="mt-3 mx-auto" style="max-width: 80%; color: var(--default-color); opacity: 0.85;">
+              منتجات كروشيه فاخرة مصممة للأناقة والراحة لتناسب استخدامك اليومي.
+            </p>
+            <div class="social-links mt-3">
+              <a href="https://www.facebook.com/share/18bEfZnFVM/?mibextid=wwXIfr" class="mx-2 fs-5"
+                style="color: var(--default-color);" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+              <a href="https://www.instagram.com/osma_egy?igsi=cm90NTdnbWUwZ2Q1" class="mx-2 fs-5"
+                style="color: var(--default-color);" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+              <a href="https://www.tiktok.com/@osma.egy?_r=1&_t=ZS-999WFKWcTu1" class="mx-2 fs-5"
+                style="color: var(--default-color);" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+            </div>
+          </div>
+
+          <!-- 2. Contact Info -->
+          <div class="col-md-6">
+            <h5 style="color: var(--osma-primary);" class="fw-bold">تواصل معنا</h5>
+            <ul class="list-unstyled mt-3 fs-5" style="line-height: 2.2; color: var(--default-color);">
+              <li><i class="bi bi-geo-alt me-2" style="color: var(--osma-primary);"></i> القاهرة، مصر</li>
+              <li><i class="bi bi-telephone me-2" style="color: var(--osma-primary);"></i> <span
+                  dir="ltr">+201111447123</span></li>
+              <li><i class="bi bi-envelope me-2" style="color: var(--osma-primary);"></i> osma@gmail.com</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Footer -->
+    <div class="footer-bottom py-4" style="border-top: 1px solid rgba(72, 93, 108, 0.1);">
+      <div class="container text-center">
+
+        <p class="mb-2" style="font-size: 1.1rem; color: var(--default-color); opacity: 0.8;">
+          © <strong>رو كرافت</strong>. جميع الحقوق محفوظة.
+        </p>
+
+        <div class="mb-3">
+          <span style="font-size: 1.1rem; color: var(--default-color); opacity: 0.8;">تصميم بواسطة</span><br>
+          <a href="https://hassan6102.github.io/portfolio/" class="text-decoration-none fw-bold mt-1 d-inline-block"
+            style="color: var(--osma-primary); font-size: 1rem; letter-spacing: 0.5px;">
+            Eng. Hassan Mohamed
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Customer Support Button -->
+  <div class="cs-float" id="csFloat">
+    <button class="cs-main" id="csMain" aria-expanded="false" aria-label="Customer Support">
+      <i class="bi bi-chat-dots-fill cs-icon"></i>
+    </button>
+
+    <div class="cs-menu" id="csMenu" role="menu">
+      <a class="cs-item" href="https://wa.me/201111447123" target="_blank">
+        <i class="bi bi-whatsapp" style="color: #25D366;"></i>
+        <span>واتساب</span>
+      </a>
+      <a class="cs-item" href="tel:+201111447123">
+        <i class="bi bi-telephone-fill" style="color: var(--osma-primary);"></i>
+        <span>اتصل بنا</span>
+      </a>
+    </div>
+  </div>
+
   <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const csFloat = document.getElementById("csFloat");
-    const csMain = document.getElementById("csMain");
+    document.addEventListener('DOMContentLoaded', function () {
+      const csFloat = document.getElementById("csFloat");
+      const csMain = document.getElementById("csMain");
 
-    if (csMain && csFloat) {
-      // Toggle Menu
-      csMain.addEventListener("click", function (e) {
-        e.preventDefault(); // منع أي سلوك افتراضي
-        e.stopPropagation(); // منع انتقال الضغطة لباقي الصفحة
-        csFloat.classList.toggle("open");
-        
-        // تغيير حالة aria للـ Accessibility
-        const isOpen = csFloat.classList.contains("open");
-        csMain.setAttribute("aria-expanded", isOpen);
-      });
+      if (csMain && csFloat) {
+        csMain.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          csFloat.classList.toggle("open");
+          const isOpen = csFloat.classList.contains("open");
+          csMain.setAttribute("aria-expanded", isOpen);
+        });
 
-      // Close when clicking outside
-      document.addEventListener("click", function (e) {
-        if (!csFloat.contains(e.target)) {
-          csFloat.classList.remove("open");
-          csMain.setAttribute("aria-expanded", "false");
-        }
-      });
-    }
-  });
-</script> 
-<script type="module">
+        document.addEventListener("click", function (e) {
+          if (!csFloat.contains(e.target)) {
+            csFloat.classList.remove("open");
+            csMain.setAttribute("aria-expanded", "false");
+          }
+        });
+      }
+    });
+  </script>
+
+  <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-    // إعدادات فايربيز الخاصة بمتجرك
+    // قمت بتحديث بيانات Firebase لتكون لمتجر Rocraft كما كانت في الصفحة السابقة لضمان عمل الإعلانات بشكل سليم
     const firebaseConfig = {
-      apiKey: "AIzaSyA1jQa2Bo9U7UBDRWjSLHbY8Q42xbOlA8k",
-      authDomain: "bag-store-app-55b26.firebaseapp.com",
-      projectId: "bag-store-app-55b26",
-      storageBucket: "bag-store-app-55b26.firebasestorage.app",
-      messagingSenderId: "876785296161",
-      appId: "1:876785296161:web:320fea9a586bf48f84d460",
-      measurementId: "G-M6YS1LFRCD"
+      apiKey: "AIzaSyBLtls0Gv96pQAEwFORxcZ4PAmr9lAJxT4",
+      authDomain: "rocraft-f0e6a.firebaseapp.com",
+      projectId: "rocraft-f0e6a",
+      storageBucket: "rocraft-f0e6a.firebasestorage.app",
+      messagingSenderId: "393495310156",
+      appId: "1:393495310156:web:d4e3657b5af8bda30e29e9"
     };
 
     const app = initializeApp(firebaseConfig);
@@ -418,22 +494,22 @@
           });
           annContainer.innerHTML = html;
         } else {
-          annContainer.innerHTML = `<div class="swiper-slide" style="font-size: 15px; font-weight: 500;">✨ أهلاً بكم في متجر OSMA Bags ✨</div>`;
+          annContainer.innerHTML = `<div class="swiper-slide" style="font-size: 15px; font-weight: 500;">✨ أهلاً بكم في متجر رو كرافت للكروشيه ✨</div>`;
         }
 
         setTimeout(() => {
           if (typeof Swiper !== 'undefined') {
-             const sliderElem = document.querySelector('.announcement-slider');
-             if (sliderElem && sliderElem.swiper) {
-                 sliderElem.swiper.destroy(true, true);
-             }
-             new Swiper('.announcement-slider', {
-               loop: true,
-               speed: 600,
-               autoplay: { delay: 3000, disableOnInteraction: false },
-               slidesPerView: 1,
-               direction: "vertical"
-             });
+            const sliderElem = document.querySelector('.announcement-slider');
+            if (sliderElem && sliderElem.swiper) {
+              sliderElem.swiper.destroy(true, true);
+            }
+            new Swiper('.announcement-slider', {
+              loop: true,
+              speed: 600,
+              autoplay: { delay: 3000, disableOnInteraction: false },
+              slidesPerView: 1,
+              direction: "vertical"
+            });
           }
         }, 100);
 
@@ -444,8 +520,11 @@
 
     loadAnnouncements();
   </script>
+
   <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"
+    style="background: var(--osma-primary);"><i class="bi bi-arrow-up-short"
+      style="color: var(--contrast-color);"></i></a>
 
   <!-- Preloader -->
   <div id="preloader"></div>

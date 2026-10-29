@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Shiping Info - FashionStore</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+  <title>معلومات الشحن - متجر رو كرافت</title>
+  <meta name="description" content="معلومات وتفاصيل الشحن لمنتجات الكروشيه والأعمال اليدوية من متجر رو كرافت.">
+  <meta name="keywords" content="شحن, توصيل, رو كرافت, كروشيه, هاند ميد, مصر">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -15,9 +15,7 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Quicksand:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -30,344 +28,100 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-
-</head>
-
-<body class="shiping-info-page">
-
-  <header id="header" class="header position-fixed w-100 top-0">
-
-    <!-- Announcement Bar -->
-    <div class="announcement-bar py-2" style="background-color: var(--osma-primary); color: #fff;">
-      <div class="container-fluid container-xl">
-        <div class="announcement-slider swiper">
-          <div class="swiper-wrapper text-center" id="dynamic-announcements">
-            <div class="swiper-slide" style="font-size: 14px;">جاري تحميل العروض...</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Main Header -->
-    <div class="main-header bg-white shadow-sm">
-      <div class="container-fluid container-xl">
-        <div class="d-flex py-3 align-items-center justify-content-between">
-
-          <!-- Logo -->
-          <a href="index.html" class="logo d-flex align-items-center text-decoration-none">
-            <img src="assets/img/icon - Copy.png" alt="dobleer Logo" class="logo-img">
-          </a>
-
-          <!-- Desktop Navigation -->
-          <div class="header-nav d-none d-xl-block">
-            <nav id="navmenu" class="navmenu">
-              <ul class="d-flex list-unstyled mb-0 gap-4">
-                <li><a href="index.html" >Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="return-policy.html">Return Policy</a></li>
-                <li><a href="shipping-info.html" class="active">Shipping Information</a></li>
-              </ul>
-            </nav>
-          </div>
-
-          <!-- Icons & Actions -->
-          <div class="header-actions d-flex align-items-center gap-3">
-            <!-- Search Toggle -->
-
-
-            <!-- Mobile Navigation Toggle (Triggers Offcanvas) -->
-            <!-- Mobile Navigation Toggle (Triggers Offcanvas) -->
-            <i class="custom-nav-toggle d-xl-none bi bi-list fs-2 text-dark cursor-pointer" data-bs-toggle="offcanvas"
-              data-bs-target="#mobileNavSidebar" aria-controls="mobileNavSidebar"></i>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <!-- Search Form Dropdown (Collapse) -->
-    <div class="collapse position-absolute w-100 bg-white shadow-sm" id="mobileSearch" style="top: 100%; z-index: -1;">
-      <div class="container py-3">
-        <form class="search-form">
-          <div class="input-group input-group-lg">
-            <input type="text" class="form-control border-0 bg-light" placeholder="Search for products..."
-              style="box-shadow: none;">
-            <button class="btn btn-dark px-4" type="submit">
-              <i class="bi bi-search"></i>
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <!-- Premium Mobile Sidebar Menu (Offcanvas) -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileNavSidebar" aria-labelledby="mobileNavLabel">
-      <div class="offcanvas-header border-bottom py-3">
-        <h5 class="offcanvas-title fw-bold text-dark" id="mobileNavLabel">Menu</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body px-4 py-4">
-        <nav class="mobile-nav">
-          <ul class="list-unstyled d-flex flex-column gap-3 mb-0 fs-5">
-            <li><a href="index.html" class="text-decoration-none text-dark active">Home</a></li>
-            <li><a href="about.html" class="text-decoration-none text-dark">About</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="return-policy.html">Return Policy</a></li>
-            <li><a href="shipping-info.html">Shipping Information</a></li>
-          </ul>
-        </nav>
-
-        
-      </div>
-    </div>
-
-  </header>
-
-  <main class="main">
-
-   
-
-    <!-- Shipping Info Section -->
-    <section id="shipping-info" class="shipping-info section">
-
-      <div class="container" data-aos="fade-up">
-
-        <div class="content-wrapper">
-          <!-- Delivery Options -->
-          <div class="content-block" data-aos="fade-up" data-aos-delay="100">
-            <div class="section-heading">
-              <i class="bi bi-truck"></i>
-              <h3>Freight & Delivery Options</h3>
-              <p>Choose the shipping method that best suits your production timeline and volume</p>
-            </div>
-
-            <div class="row gy-4 gx-lg-5">
-              <div class="col-md-6 col-lg-4">
-                <div class="delivery-card">
-                  <div class="card-icon">
-                    <i class="bi bi-lightning-charge"></i>
-                  </div>
-                  <h4>Express Air Courier</h4>
-                  <p>Fast air delivery for pre-production samples and urgent small-batch clothing orders.</p>
-                  <div class="delivery-time">
-                    <i class="bi bi-clock"></i>
-                    <span>1-3 Business Days</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6 col-lg-4">
-                <div class="delivery-card">
-                  <div class="card-icon">
-                    <i class="bi bi-box-seam"></i>
-                  </div>
-                  <h4>Standard Bulk Freight</h4>
-                  <p>Reliable sea or standard air freight for large wholesale apparel manufacturing orders.</p>
-                  <div class="delivery-time">
-                    <i class="bi bi-clock"></i>
-                    <span>15-30 Business Days</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <div class="delivery-card">
-                  <div class="card-icon">
-                    <i class="bi bi-pin-map"></i>
-                  </div>
-                  <h4>Domestic Trucking</h4>
-                  <p>Direct factory-to-warehouse truck delivery for domestic apparel brands and retailers.</p>
-                  <div class="delivery-time">
-                    <i class="bi bi-clock"></i>
-                    <span>2-5 Business Days</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Shipping Costs -->
-          <div class="content-block" data-aos="fade-up" data-aos-delay="200">
-            <div class="section-heading">
-              <i class="bi bi-cash-coin"></i>
-              <h3>Sample & Base Shipping Costs</h3>
-              <p>Transparent baseline pricing for samples and localized shipping</p>
-            </div>
-
-            <div class="shipping-rates">
-              <div class="rate-item">
-                <div class="rate-type">Fabric Swatches</div>
-                <div class="rate-cost">$5.99</div>
-                <div class="rate-info">For material sourcing under 1kg</div>
-              </div>
-              <div class="rate-item highlight">
-                <div class="rate-type">Free Local Freight</div>
-                <div class="rate-cost">$0.00</div>
-                <div class="rate-info">For wholesale orders over $10,000</div>
-              </div>
-              <div class="rate-item">
-                <div class="rate-type">Express Prototype</div>
-                <div class="rate-cost">$12.99</div>
-                <div class="rate-info">1-2 business days for custom samples</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- International Shipping -->
-          <div class="content-block" data-aos="fade-up" data-aos-delay="300">
-            <div class="section-heading">
-              <i class="bi bi-globe"></i>
-              <h3>International Exporting</h3>
-              <p>We export garments worldwide with reliable global B2B carriers</p>
-            </div>
-
-            <div class="international-info">
-              <div class="info-item">
-                <i class="bi bi-clock-history"></i>
-                <h5>Transit Times</h5>
-                <p>15-30 days for sea freight (FCL/LCL), 3-7 days for global air freight.</p>
-              </div>
-              <div class="info-item">
-                <i class="bi bi-currency-dollar"></i>
-                <h5>Customs &amp; Tariffs</h5>
-                <p>Import duties, taxes, and customs clearance fees are the responsibility of the receiving brand.</p>
-              </div>
-              <div class="info-item">
-                <i class="bi bi-shield-check"></i>
-                <h5>Logistics Partners</h5>
-                <p>Fully tracked and insured shipments with leading commercial freight forwarders.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- FAQ Section -->
-          <div class="content-block" data-aos="fade-up" data-aos-delay="400">
-            <div class="section-heading">
-              <i class="bi bi-question-circle"></i>
-              <h3>Logistics FAQ</h3>
-              <p>Common questions about our factory's shipping and freight operations</p>
-            </div>
-
-            <div class="faq-list">
-              <div class="faq-item">
-                <h3>
-                  <i class="bi bi-question-circle"></i>
-                  How can I track my bulk shipment?
-                  <i class="bi bi-chevron-down faq-toggle"></i>
-                </h3>
-                <div class="faq-answer">
-                  <p>Once your garments leave our factory floor, your account manager will provide you with a Bill of
-                    Lading (BOL) or an AWB tracking number to monitor your shipment in real-time.</p>
-                </div>
-              </div>
-
-              <div class="faq-item">
-                <h3>
-                  <i class="bi bi-question-circle"></i>
-                  What if our warehouse is closed upon arrival?
-                  <i class="bi bi-chevron-down faq-toggle"></i>
-                </h3>
-                <div class="faq-answer">
-                  <p>For LTL and FCL freight, our carriers will call your receiving department ahead of time to schedule
-                    a specific delivery appointment and ensure your loading dock is ready.</p>
-                </div>
-              </div>
-
-              <div class="faq-item">
-                <h3>
-                  <i class="bi bi-question-circle"></i>
-                  Do you offer weekend delivery?
-                  <i class="bi bi-chevron-down faq-toggle"></i>
-                </h3>
-                <div class="faq-answer">
-                  <p>Standard freight and container deliveries operate Monday through Friday. However, weekend delivery
-                    can be arranged for highly urgent sample air shipments upon special request.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section><!-- /Shipping Info Section -->
-
-  </main>
-<footer id="footer" class="footer light-background text-center">
-  <div class="footer-main" style="background-color: var(--osma-bg); padding: 40px 0;">
-    <div class="container">
-      <div class="row gy-4">
-
-        <!-- 1. Brand & Social -->
-        <div class="col-md-6">
-          <a href="index.html" class="logo text-decoration-none">
-            <span class="sitename" style="color: var(--osma-primary); font-size: 28px; font-weight: 700;">OSMA Bags</span>
-          </a>
-          <!-- ضفنا mx-auto عشان البلوكات اللي ليها عرض محدد تتسنتر -->
-          <p class="mt-3 text-muted mx-auto" style="max-width: 80%;">
-            Premium bags designed for elegance, style, and everyday functionality.
-          </p>
-          <!-- خلينا المسافات بين الأيقونات متساوية من الناحيتين باستخدام mx-2 -->
-          <div class="social-links mt-3">
-            <a href="https://www.facebook.com/share/18bEfZnFVM/?mibextid=wwXIfr" class="mx-2 text-dark fs-5" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-            <a href="https://www.instagram.com/osma_egy?igsi=cm90NTdnbWUwZ2Q1" class="mx-2 text-dark fs-5" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-            <a href="https://www.tiktok.com/@osma.egy?_r=1&_t=ZS-999WFKWcTu1" class="mx-2 text-dark fs-5" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
-          </div>
-        </div>
-
-        <!-- 2. Contact Info -->
-        <div class="col-md-6">
-          <h5 style="color: var(--osma-primary);">Contact Us</h5>
-          <ul class="list-unstyled mt-3" style="line-height: 2;">
-            <li><i class="bi bi-geo-alt me-2" style="color: var(--osma-primary);"></i> Cairo, Egypt</li>
-            <li><i class="bi bi-telephone me-2" style="color: var(--osma-primary);"></i> <span dir="ltr">+201111447123</span></li>
-            <li><i class="bi bi-envelope me-2" style="color: var(--osma-primary);"></i> osma@gmail.com</li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- Bottom Footer -->
-  <div class="footer-bottom py-4" style="border-top: 1px solid rgba(0,0,0,0.1);">
-    <div class="container text-center">
-      
-      <!-- حقوق النشر -->
-      <p class="mb-2 text-muted" style="font-size: 1.1rem;">
-        © <strong>OSMA</strong>. All Rights Reserved.
-      </p>
-      
-      <!-- اسم المصمم -->
-      <div class="mb-3">
-        <span class="text-muted" style="font-size: 1.1rem;">Designed by</span><br>
-        <a href="https://hassan6102.github.io/portfolio/" class="text-decoration-none fw-bold mt-1 d-inline-block" style="color: var(--osma-primary); font-size: 1rem; letter-spacing: 0.5px;">
-          Eng. Hassan Mohamed
-        </a>
-      </div>
-      
-    </div>
-  </div>
-</footer> <!-- Floating Customer Support Button (Modern & Clean) -->
-  <div class="cs-float" id="csFloat">
-    <button class="cs-main" id="csMain" aria-expanded="false" aria-label="Customer Support">
-      <i class="bi bi-chat-dots-fill cs-icon"></i>
-    </button>
-
-    <div class="cs-menu" id="csMenu" role="menu">
-      <a class="cs-item" href="https://wa.me/201111447123" target="_blank">
-        <i class="bi bi-whatsapp" style="color: #25D366;"></i>
-        <span>WhatsApp</span>
-      </a>
-      <a class="cs-item" href="tel:+01111447123">
-        <i class="bi bi-telephone-fill" style="color: var(--osma-primary);"></i>
-        <span>Call Us</span>
-      </a>
-    </div>
-  </div>
-
   <style>
+    :root {
+      /* الألوان الجديدة */
+      --background-color: #F7F7F3;
+      --default-color: #485D6C;
+      --heading-color: #485D6C;
+      --accent-color: #ff7e4f;
+      --surface-color: #ffffff;
+      --contrast-color: #ffffff;
+      
+      --nav-color: #485D6C;
+      --nav-hover-color: #F09A7A;
+
+      /* التوافق مع الكلاسات القديمة */
+      --osma-primary: var(--accent-color); 
+      --osma-hover: var(--nav-hover-color);
+      --osma-bg: var(--background-color); 
+    }
+
+    body {
+      background-color: var(--osma-bg) !important;
+      color: var(--default-color);
+      font-family: 'Tajawal', sans-serif;
+      text-align: right;
+    }
+
+    h1, h2, h3, h4, h5, h6, .section-heading h3 {
+      font-family: 'El Messiri', sans-serif;
+      color: var(--heading-color) !important;
+    }
+
+    .header-nav nav ul li a {
+      color: var(--nav-color);
+    }
+
+    .header-nav nav ul li a.active,
+    .header-nav nav ul li a:hover {
+      color: var(--osma-primary) !important;
+    }
+
+    /* تنسيق البانر العلوي (Hero) */
+    .page-header-banner {
+      background: linear-gradient(rgba(247, 247, 243, 0.9), rgba(247, 247, 243, 0.9)), url('assets/img/shipping-bg.webp') center/cover;
+      padding: 60px 0 40px;
+      border-bottom: 1px solid rgba(72, 93, 108, 0.1);
+    }
+
+    /* Cards Styling */
+    .content-card {
+      background: var(--surface-color);
+      border-radius: 20px;
+      padding: 30px;
+      border: 1px solid rgba(72, 93, 108, 0.1);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: all 0.4s ease;
+      height: 100%;
+      text-align: center;
+    }
+
+    .content-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(255, 126, 79, 0.15);
+    }
+
+    .content-card .card-icon {
+      font-size: 40px;
+      color: var(--osma-primary);
+      margin-bottom: 15px;
+    }
+
+    .content-card h4 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .content-card p {
+      font-size: 0.95rem;
+      opacity: 0.85;
+      margin-bottom: 20px;
+    }
+
+    .delivery-time {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 15px;
+      background: rgba(255, 126, 79, 0.1);
+      color: var(--osma-primary);
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
     /* Clean Support Button CSS */
     .cs-float {
       position: fixed;
@@ -380,14 +134,14 @@
       width: 55px;
       height: 55px;
       border-radius: 50%;
-      background-color: #8b7355;
-      color: white;
+      background-color: var(--osma-primary);
+      color: var(--contrast-color);
       border: none;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 4px 15px rgba(139, 115, 85, 0.3);
+      box-shadow: 0 4px 15px rgba(255, 126, 79, 0.3);
       transition: transform 0.3s ease, background-color 0.3s ease;
     }
 
@@ -396,22 +150,21 @@
       background-color: var(--osma-hover);
     }
 
-.cs-icon {
+    .cs-icon {
       font-size: 24px;
       transition: transform 0.3s ease;
-      pointer-events: none; /* إضافة السطر ده */
+      pointer-events: none;
     }
 
     .cs-float.open .cs-icon {
       transform: rotate(360deg);
-      content: "\F62A"; /* تتغير لعلامة X في البوتستراب أيكونز لو حابب تظبطها بالجافاسكريبت، بس الدوران شغال كويس */
     }
 
     .cs-menu {
       position: absolute;
       right: 0;
       bottom: 70px;
-      background: #ffffff;
+      background: var(--surface-color);
       border-radius: 12px;
       padding: 10px 0;
       width: 180px;
@@ -434,7 +187,7 @@
       gap: 12px;
       padding: 10px 20px;
       text-decoration: none;
-      color: #333;
+      color: var(--default-color);
       font-weight: 500;
       font-size: 15px;
       transition: background-color 0.2s ease;
@@ -445,50 +198,240 @@
     }
 
     .cs-item:hover {
-      background-color: #f8f9fa;
+      background-color: rgba(247, 247, 243, 0.8);
       color: var(--osma-primary);
     }
   </style>
+</head>
+
+<body class="shipping-info-page">
+
+  <header id="header" class="header position-fixed w-100 top-0" style="z-index: 1030;">
+    <!-- Announcement Bar -->
+    <div class="announcement-bar py-2" style="background-color: var(--osma-primary); color: var(--contrast-color);">
+      <div class="container-fluid container-xl">
+        <div class="announcement-slider swiper">
+          <div class="swiper-wrapper text-center" id="dynamic-announcements">
+            <div class="swiper-slide" style="font-size: 14px;">جاري تحميل العروض...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Header -->
+    <div class="main-header shadow-sm" style="background-color: var(--surface-color);">
+      <div class="container-fluid container-xl">
+        <div class="d-flex py-3 align-items-center justify-content-between">
+          <!-- Logo -->
+          <a href="index.html" class="logo d-flex align-items-center text-decoration-none">
+            <img src="assets/img/icon - Copy.png" alt="Rocraft Logo" class="logo-img">
+          </a>
+
+          <!-- Desktop Navigation -->
+          <div class="header-nav d-none d-xl-block">
+            <nav id="navmenu" class="navmenu">
+              <ul class="d-flex list-unstyled mb-0 gap-4">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="about.html">من نحن</a></li>
+                <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                <li><a href="return-policy.html">سياسة الاسترجاع</a></li>
+                <li><a href="shipping-info.html" class="active">معلومات الشحن</a></li>
+              </ul>
+            </nav>
+          </div>
+
+          <!-- Icons & Actions -->
+          <div class="header-actions d-flex align-items-center gap-3">
+            <i class="custom-nav-toggle d-xl-none bi bi-list fs-2 cursor-pointer" style="color: var(--default-color);" data-bs-toggle="offcanvas"
+              data-bs-target="#mobileNavSidebar" aria-controls="mobileNavSidebar"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Sidebar Menu -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileNavSidebar" aria-labelledby="mobileNavLabel" style="background-color: var(--surface-color);">
+      <div class="offcanvas-header border-bottom py-3">
+        <h5 class="offcanvas-title fw-bold" style="color: var(--heading-color);" id="mobileNavLabel">القائمة</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body px-4 py-4">
+        <nav class="mobile-nav">
+          <ul class="list-unstyled d-flex flex-column gap-3 mb-0 fs-5">
+            <li><a href="index.html" class="text-decoration-none" style="color: var(--default-color);">الرئيسية</a></li>
+            <li><a href="about.html" class="text-decoration-none" style="color: var(--default-color);">من نحن</a></li>
+            <li><a href="faq.html" class="text-decoration-none" style="color: var(--default-color);">الأسئلة الشائعة</a></li>
+            <li><a href="shipping-info.html" class="text-decoration-none active" style="color: var(--osma-primary);">معلومات الشحن</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="main" style="padding-top: 1px;">
+
+   
+    <!-- Shipping Info Section -->
+    <section id="shipping-info" class="shipping-info section py-5">
+      <div class="container" data-aos="fade-up">
+
+        <!-- Delivery Options -->
+        <div class="content-block mb-5" data-aos="fade-up" data-aos-delay="100">
+          <div class="section-heading text-center mb-5">
+            <i class="bi bi-truck display-4 d-block mb-3" style="color: var(--osma-primary);"></i>
+            <h3 class="fw-bold">خيارات ومدة التوصيل</h3>
+            <p class="fs-5" style="opacity: 0.8;">نقدم خيارات شحن مرنة تناسب احتياجاتك وطبيعة المنتجات اليدوية.</p>
+          </div>
+
+          <div class="row gy-4 gx-lg-5">
+            <!-- التوصيل القياسي -->
+            <div class="col-md-6 col-lg-4">
+              <div class="content-card">
+                <div class="card-icon"><i class="bi bi-box-seam"></i></div>
+                <h4>الشحن القياسي</h4>
+                <p>مناسب للطلبات الجاهزة داخل القاهرة والجيزة وباقي محافظات الجمهورية عبر شركات شحن موثوقة.</p>
+                <div class="delivery-time">
+                  <i class="bi bi-clock"></i> <span>2-5 أيام عمل</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- التوصيل السريع -->
+            <div class="col-md-6 col-lg-4">
+              <div class="content-card">
+                <div class="card-icon"><i class="bi bi-lightning-charge"></i></div>
+                <h4>الشحن السريع (عاجل)</h4>
+                <p>توصيل سريع مخصص للهدايا والطلبات المستعجلة (متوفر حالياً داخل القاهرة الكبرى فقط).</p>
+                <div class="delivery-time">
+                  <i class="bi bi-clock"></i> <span>خلال 48 ساعة</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- الطلبات المخصصة -->
+            <div class="col-md-6 col-lg-4">
+              <div class="content-card">
+                <div class="card-icon"><i class="bi bi-scissors"></i></div>
+                <h4>الطلبات المخصصة (تفصيل)</h4>
+                <p>المنتجات التي يتم تصنيعها يضاف لمدة شحنها وقت التنفيذ اليدوي لضمان أعلى جودة للكروشيه.</p>
+                <div class="delivery-time">
+                  <i class="bi bi-clock"></i> <span>7-10 أيام عمل</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+       
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer" class="footer text-center" style="background-color: var(--osma-bg);">
+    <div class="footer-main" style="padding: 40px 0;">
+      <div class="container">
+        <div class="row gy-4">
+
+          <!-- 1. Brand & Social -->
+          <div class="col-md-6">
+            <a href="index.html" class="logo text-decoration-none">
+              <span class="sitename" style="color: var(--osma-primary); font-size: 28px; font-weight: 700;">رو كرافت</span>
+            </a>
+            <p class="mt-3 mx-auto" style="max-width: 80%; color: var(--default-color); opacity: 0.85;">
+              منتجات كروشيه فاخرة مصممة للأناقة والراحة لتناسب استخدامك اليومي.
+            </p>
+            <div class="social-links mt-3">
+              <a href="https://www.facebook.com/share/18bEfZnFVM/?mibextid=wwXIfr" class="mx-2 fs-5" style="color: var(--default-color);" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+              <a href="https://www.instagram.com/osma_egy?igsi=cm90NTdnbWUwZ2Q1" class="mx-2 fs-5" style="color: var(--default-color);" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+              <a href="https://www.tiktok.com/@osma.egy?_r=1&_t=ZS-999WFKWcTu1" class="mx-2 fs-5" style="color: var(--default-color);" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+            </div>
+          </div>
+
+          <!-- 2. Contact Info -->
+          <div class="col-md-6">
+            <h5 style="color: var(--osma-primary);" class="fw-bold">تواصل معنا</h5>
+            <ul class="list-unstyled mt-3 fs-5" style="line-height: 2.2; color: var(--default-color);">
+              <li><i class="bi bi-geo-alt me-2" style="color: var(--osma-primary);"></i> القاهرة، مصر</li>
+              <li><i class="bi bi-telephone me-2" style="color: var(--osma-primary);"></i> <span dir="ltr">+201125741855</span></li>
+              <li><i class="bi bi-envelope me-2" style="color: var(--osma-primary);"></i> osma@gmail.com</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Footer -->
+    <div class="footer-bottom py-4" style="border-top: 1px solid rgba(72, 93, 108, 0.1);">
+      <div class="container text-center">
+        <p class="mb-2" style="font-size: 1.1rem; color: var(--default-color); opacity: 0.8;">
+          © <strong>رو كرافت</strong>. جميع الحقوق محفوظة.
+        </p>
+        <div class="mb-3">
+          <span style="font-size: 1.1rem; color: var(--default-color); opacity: 0.8;">تصميم بواسطة</span><br>
+          <a href="https://hassan6102.github.io/portfolio/" class="text-decoration-none fw-bold mt-1 d-inline-block" style="color: var(--osma-primary); font-size: 1rem; letter-spacing: 0.5px;">
+            Eng. Hassan Mohamed
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer> 
+
+  <!-- Floating Customer Support Button (Modern & Clean) -->
+  <div class="cs-float" id="csFloat">
+    <button class="cs-main" id="csMain" aria-expanded="false" aria-label="Customer Support">
+      <i class="bi bi-chat-dots-fill cs-icon"></i>
+    </button>
+    <div class="cs-menu" id="csMenu" role="menu">
+      <a class="cs-item" href="https://wa.me/201125741855" target="_blank">
+        <i class="bi bi-whatsapp" style="color: #25D366;"></i>
+        <span>واتساب</span>
+      </a>
+      <a class="cs-item" href="tel:+201125741855">
+        <i class="bi bi-telephone-fill" style="color: var(--osma-primary);"></i>
+        <span>اتصل بنا</span>
+      </a>
+    </div>
+  </div>
+
   <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const csFloat = document.getElementById("csFloat");
-    const csMain = document.getElementById("csMain");
+    document.addEventListener('DOMContentLoaded', function () {
+      const csFloat = document.getElementById("csFloat");
+      const csMain = document.getElementById("csMain");
 
-    if (csMain && csFloat) {
-      // Toggle Menu
-      csMain.addEventListener("click", function (e) {
-        e.preventDefault(); // منع أي سلوك افتراضي
-        e.stopPropagation(); // منع انتقال الضغطة لباقي الصفحة
-        csFloat.classList.toggle("open");
-        
-        // تغيير حالة aria للـ Accessibility
-        const isOpen = csFloat.classList.contains("open");
-        csMain.setAttribute("aria-expanded", isOpen);
-      });
+      if (csMain && csFloat) {
+        csMain.addEventListener("click", function (e) {
+          e.preventDefault(); 
+          e.stopPropagation(); 
+          csFloat.classList.toggle("open");
+          const isOpen = csFloat.classList.contains("open");
+          csMain.setAttribute("aria-expanded", isOpen);
+        });
 
-      // Close when clicking outside
-      document.addEventListener("click", function (e) {
-        if (!csFloat.contains(e.target)) {
-          csFloat.classList.remove("open");
-          csMain.setAttribute("aria-expanded", "false");
-        }
-      });
-    }
-  });
-</script> 
-<script type="module">
+        document.addEventListener("click", function (e) {
+          if (!csFloat.contains(e.target)) {
+            csFloat.classList.remove("open");
+            csMain.setAttribute("aria-expanded", "false");
+          }
+        });
+      }
+    });
+  </script> 
+  
+  <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-    // إعدادات فايربيز الخاصة بمتجرك
+    // إعدادات فايربيز الخاصة بمتجر رو كرافت
     const firebaseConfig = {
-      apiKey: "AIzaSyA1jQa2Bo9U7UBDRWjSLHbY8Q42xbOlA8k",
-      authDomain: "bag-store-app-55b26.firebaseapp.com",
-      projectId: "bag-store-app-55b26",
-      storageBucket: "bag-store-app-55b26.firebasestorage.app",
-      messagingSenderId: "876785296161",
-      appId: "1:876785296161:web:320fea9a586bf48f84d460",
-      measurementId: "G-M6YS1LFRCD"
+      apiKey: "AIzaSyBLtls0Gv96pQAEwFORxcZ4PAmr9lAJxT4",
+      authDomain: "rocraft-f0e6a.firebaseapp.com",
+      projectId: "rocraft-f0e6a",
+      storageBucket: "rocraft-f0e6a.firebasestorage.app",
+      messagingSenderId: "393495310156",
+      appId: "1:393495310156:web:d4e3657b5af8bda30e29e9"
     };
 
     const app = initializeApp(firebaseConfig);
@@ -510,7 +453,7 @@
           });
           annContainer.innerHTML = html;
         } else {
-          annContainer.innerHTML = `<div class="swiper-slide" style="font-size: 15px; font-weight: 500;">✨ أهلاً بكم في متجر OSMA Bags ✨</div>`;
+          annContainer.innerHTML = `<div class="swiper-slide" style="font-size: 15px; font-weight: 500;">✨ أهلاً بكم في متجر رو كرافت للكروشيه ✨</div>`;
         }
 
         setTimeout(() => {
@@ -536,9 +479,9 @@
 
     loadAnnouncements();
   </script>
+
   <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
-      class="bi bi-arrow-up-short"></i></a>
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center" style="background: var(--osma-primary);"><i class="bi bi-arrow-up-short" style="color: var(--contrast-color);"></i></a>
 
   <!-- Preloader -->
   <div id="preloader"></div>
@@ -558,5 +501,4 @@
   <script src="assets/js/main.js"></script>
 
 </body>
-
 </html>

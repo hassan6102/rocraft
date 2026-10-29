@@ -14,7 +14,7 @@ import {
 const nav = [
   { id: 'dashboard', label: 'الرئيسية', icon: LayoutDashboard },
   { id: 'products', label: 'المنتجات', icon: ShoppingBag },
-  { id: 'categories', label: 'الأقسام', icon: Tag }, 
+  { id: 'categories', label: 'الأقسام', icon: Tag },
   { id: 'inventory', label: 'المخزون', icon: Box },
   { id: 'orders', label: 'الطلبات', icon: ShoppingCart },
   { id: 'customers', label: 'العملاء', icon: Users },
@@ -49,105 +49,140 @@ function StatCard({ icon: Icon, label, value, trend, accent }: { icon: typeof Za
   </div>
 }
 
+const egp = (n: number) => `${Math.round(n || 0).toLocaleString('ar-EG')} ج.م`
+const tsOf = (o: any): Date | null => (o?.createdAt?.toDate ? o.createdAt.toDate() : null)
+
 function Dashboard({ setPage }: { setPage: (p: string) => void }) {
-  const [range, setRange] = useState('آخر 7 أيام');
-  const [realProducts, setRealProducts] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
-  // جلب المنتجات لحساب الإحصائيات
+  const [products, setProducts] = useState<any[]>([]);
+  const [orders, setOrders] = useState<any[]>([]);
+  const [customers, setCustomers] = useState<any[]>([]);
+  const [ready, setReady] = useState({ p: false, o: false, c: false });
+  const loading = !(ready.p && ready.o && ready.c);
+
   useEffect(() => {
-    const q = query(collection(db, 'products'), orderBy('createdAt', 'desc'));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const productsData = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-      setRealProducts(productsData);
-      setLoading(false);
-    });
-    return () => unsubscribe();
+    const sub = (name: string, set: (d: any[]) => void, key: 'p' | 'o' | 'c') =>
+      onSnapshot(query(collection(db, name)), (s) => {
+        set(s.docs.map(d => ({ id: d.id, ...d.data() })));
+        setReady(r => ({ ...r, [key]: true }));
+      }, () => setReady(r => ({ ...r, [key]: true })));
+    const u = [sub('products', setProducts, 'p'), sub('orders', setOrders, 'o'), sub('customers', setCustomers, 'c')];
+    return () => u.forEach(f => f());
   }, []);
 
-  // حساب الإحصائيات الحقيقية
-  const totalProducts = realProducts.length;
-  const outOfStockCount = realProducts.filter(p => p.stock === 0).length;
-  const lowStockProducts = realProducts.filter(p => p.stock < 10 && p.stock > 0).slice(0, 4);
-  const latestProducts = realProducts.slice(0, 4);
+  const d = useMemo(() => {
+    const valid = orders.filter(o => o.status !== 'ملغي');
+    const revenue = valid.reduce((t, o) => t + (Number(o.totalPrice) || 0), 0);
+    const newOrders = orders.filter(o => (o.status || 'جديد') === 'جديد');
+    const startToday = new Date(); startToday.setHours(0, 0, 0, 0);
+    const today = orders.filter(o => (tsOf(o)?.getTime() || 0) >= startToday.getTime());
+    const days = Array.from({ length: 7 }, (_, i) => {
+      const day = new Date(startToday); day.setDate(day.getDate() - (6 - i));
+      const next = new Date(day); next.setDate(next.getDate() + 1);
+      const list = valid.filter(o => { const t = tsOf(o)?.getTime() || 0; return t >= day.getTime() && t < next.getTime(); });
+      return { label: day.toLocaleDateString('ar-EG', { weekday: 'short' }), total: list.reduce((t, o) => t + (Number(o.totalPrice) || 0), 0), count: list.length };
+    });
+    const maxDay = Math.max(...days.map(x => x.total), 1);
+    const byStatus: Record<string, number> = {};
+    orders.forEach(o => { const s = o.status || 'جديد'; byStatus[s] = (byStatus[s] || 0) + 1; });
+    const top: Record<string, number> = {};
+    valid.forEach(o => { if (o.productName) top[o.productName] = (top[o.productName] || 0) + (Number(o.quantity) || 1); });
+    const topProducts = Object.entries(top).sort((a, b) => b[1] - a[1]).slice(0, 5);
+    const out = products.filter(p => Number(p.stock) === 0);
+    const low = products.filter(p => Number(p.stock) > 0 && Number(p.stock) < 10);
+    const stockValue = products.reduce((t, p) => t + (Number(p.price) || 0) * (Number(p.stock) || 0), 0);
+    return { revenue, newOrders, today, days, maxDay, byStatus, topProducts, out, low, stockValue, avg: valid.length ? revenue / valid.length : 0, recent: [...orders].sort((a, b) => (tsOf(b)?.getTime() || 0) - (tsOf(a)?.getTime() || 0)).slice(0, 6) };
+  }, [orders, products]);
+
+  const hour = new Date().getHours();
+  const greet = hour < 12 ? 'صباح الخير' : hour < 18 ? 'مساء الخير' : 'مساء النور';
+  const v = (x: string | number) => (loading ? '...' : String(x));
+  const statusTone: Record<string, string> = { 'جديد': 'gold', 'ملغي': 'rose' };
 
   return (
     <div className="page-content">
       <div className="welcome-row">
         <div>
-          <p className="eyebrow">مرحباً بك في إدارة المتجر</p>
-          <h1>نظرة عامة على الأداء <span>!</span></h1>
-          <p className="subtle">إليك إحصائيات منتجاتك المخزنة في قاعدة البيانات.</p>
+          <p className="eyebrow">{new Date().toLocaleDateString('ar-EG', { weekday: 'long', day: 'numeric', month: 'long' })}</p>
+          <h1>{greet}، حسن</h1>
+          <p className="subtle">{loading ? 'جاري تحميل بيانات المتجر...' : d.newOrders.length ? `عندك ${d.newOrders.length} طلب جديد محتاج مراجعة.` : 'مفيش طلبات جديدة دلوقتي.'}</p>
         </div>
-        <button className="primary-button" onClick={() => setPage('products')}>
-          <Plus size={17} /> إضافة منتج جديد
-        </button>
+        <div className="dx-actions">
+          <button className="secondary-button" onClick={() => setPage('orders')}><ClipboardList size={16} /> الطلبات</button>
+          <button className="primary-button" onClick={() => setPage('add-product')}><Plus size={17} /> منتج جديد</button>
+        </div>
       </div>
 
       <div className="stats-grid">
-        <StatCard icon={Package} label="إجمالي المنتجات" value={loading ? "..." : totalProducts.toString()} trend="محدث الآن" accent="green" />
-        <StatCard icon={AlertTriangle} label="منتجات نفذت" value={loading ? "..." : outOfStockCount.toString()} trend="يحتاج انتباهك" accent="gold" />
-        {/* أرقام تجريبية للطلبات لحين ربط المتجر */}
-        <StatCard icon={ShoppingCart} label="إجمالي الطلبات" value="0" trend="قريباً" accent="blue" />
-        <StatCard icon={CircleDollarSign} label="إجمالي المبيعات" value="$0" trend="قريباً" accent="purple" />
+        <StatCard icon={CircleDollarSign} label="إجمالي المبيعات" value={v(egp(d.revenue))} trend={`متوسط الطلب ${egp(d.avg)}`} accent="purple" />
+        <StatCard icon={ShoppingCart} label="طلبات اليوم" value={v(d.today.length)} trend={`الإجمالي ${orders.length} طلب`} accent="blue" />
+        <StatCard icon={Users} label="العملاء" value={v(customers.length)} trend="عملاء مسجلين" accent="green" />
+        <StatCard icon={Package} label="المنتجات" value={v(products.length)} trend={`قيمة المخزون ${egp(d.stockValue)}`} accent="gold" />
+      </div>
+
+      <div className="main-grid">
+        <section className="panel">
+          <div className="panel-heading"><div><h2>مبيعات آخر 7 أيام</h2><p>بدون الطلبات الملغية</p></div><b className="dx-total">{egp(d.days.reduce((t, x) => t + x.total, 0))}</b></div>
+          <div className="dx-bars">
+            {d.days.map((x, i) => (
+              <div className="dx-bar" key={i} title={`${x.count} طلب`}>
+                <span className="dx-val">{x.total ? Math.round(x.total).toLocaleString('ar-EG') : ''}</span>
+                <i style={{ height: `${Math.max((x.total / d.maxDay) * 100, 4)}%` }} />
+                <em>{x.label}</em>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="panel">
+          <div className="panel-heading"><div><h2>حالات الطلبات</h2><p>توزيع كل الطلبات</p></div></div>
+          <div className="dx-status">
+            {orders.length === 0 && <p className="muted">مفيش طلبات لسه.</p>}
+            {Object.entries(d.byStatus).map(([s, n]) => (
+              <div key={s}><div className="dx-row"><span>{s}</span><b>{n}</b></div><div className="mini-bar wide"><i style={{ width: `${(n / orders.length) * 100}%` }} /></div></div>
+            ))}
+          </div>
+        </section>
       </div>
 
       <div className="main-grid lower-grid">
         <section className="panel">
-          <div className="panel-heading">
-            <div>
-              <h2>أحدث المنتجات المضافة</h2>
-              <p>آخر الشنط اللي تم رفعها</p>
-            </div>
-            <button className="text-button" onClick={() => setPage('products')}>عرض الكل <ChevronLeft size={15} /></button>
-          </div>
-          <div className="product-list">
-            {latestProducts.length === 0 && !loading ? <p style={{ padding: '15px', color: '#888' }}>لا توجد منتجات حتى الآن.</p> : null}
-            {latestProducts.map((p, i) => (
-              <div className="product-row" key={p.id}>
-                <div className="product-thumb navy"><ShoppingBag size={20} /></div>
-                <div className="product-info">
-                  <strong>{p.name}</strong>
-                  <span>{p.category}</span>
-                </div>
-                <b>${p.price}</b>
-              </div>
-            ))}
-          </div>
+          <div className="panel-heading"><div><h2>آخر الطلبات</h2><p>أحدث 6 طلبات وصلت</p></div><button className="text-button" onClick={() => setPage('orders')}>عرض الكل <ChevronLeft size={15} /></button></div>
+          <div className="table-scroll"><table className="dx-table"><thead><tr><th>العميل</th><th>المنتج</th><th>الإجمالي</th><th>الحالة</th></tr></thead><tbody>
+            {d.recent.length === 0 && <tr><td colSpan={4} className="muted">لا توجد طلبات حتى الآن.</td></tr>}
+            {d.recent.map(o => <tr key={o.id}><td><strong>{o.customerName}</strong><div className="muted">{tsOf(o)?.toLocaleDateString('ar-EG') || ''}</div></td><td>{o.productName}{o.quantity > 1 ? ` ×${o.quantity}` : ''}</td><td><strong>{egp(o.totalPrice)}</strong></td><td><Status>{o.status || 'جديد'}</Status></td></tr>)}
+          </tbody></table></div>
         </section>
 
-        <section className="panel">
-          <div className="panel-heading">
-            <div>
-              <h2>تنبيهات المخزون (Low Stock)</h2>
-              <p>شنط قربت تخلص من المخزن (أقل من 10 قطع)</p>
+        <div className="dx-stack">
+          <section className="panel">
+            <div className="panel-heading"><div><h2>تنبيهات المخزون</h2><p>{d.out.length} نفذت · {d.low.length} قاربت على النفاد</p></div><button className="text-button" onClick={() => setPage('inventory')}>المخزون <ChevronLeft size={15} /></button></div>
+            <div className="stock-list">
+              {!loading && d.out.length + d.low.length === 0 && <p className="muted">المخزون ممتاز، مفيش نواقص.</p>}
+              {[...d.out, ...d.low].slice(0, 5).map(p => (
+                <div className="stock-row" key={p.id}><div className="product-thumb small rose"><AlertTriangle size={16} /></div><div><strong>{p.name}</strong><span>{Number(p.stock) === 0 ? 'نفذت الكمية' : <>متبقي <b>{p.stock}</b> قطع</>}</span></div><Status>{Number(p.stock) === 0 ? 'نفذ' : 'منخفض'}</Status></div>
+              ))}
             </div>
-            <button className="icon-button"><MoreHorizontal size={20} /></button>
-          </div>
-          <div className="stock-list">
-            {lowStockProducts.length === 0 && !loading ? <p style={{ padding: '15px', color: '#888' }}>المخزون ممتاز، لا توجد نواقص.</p> : null}
-            {lowStockProducts.map(p => (
-              <div className="stock-row" key={p.id}>
-                <div className="product-thumb small rose"><ShoppingBag size={16} /></div>
-                <div>
-                  <strong>{p.name}</strong>
-                  <span>متبقي <b>{p.stock}</b> قطع</span>
-                </div>
-                <Status>منخفض</Status>
-              </div>
-            ))}
-          </div>
-        </section>
+          </section>
+          <section className="panel">
+            <div className="panel-heading"><div><h2>الأكثر مبيعاً</h2><p>حسب الكمية المطلوبة</p></div></div>
+            <div className="stock-list">
+              {d.topProducts.length === 0 && <p className="muted">هتظهر هنا بعد أول الطلبات.</p>}
+              {d.topProducts.map(([name, qty], i) => <div className="stock-row" key={name}><div className="product-thumb small navy">{i + 1}</div><div><strong>{name}</strong></div><b>{qty} قطعة</b></div>)}
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div className="dx-quick">
+        {[['categories', Tag, 'الأقسام'], ['coupons', Tag, 'الكوبونات'], ['customers', Users, 'العملاء'], ['settings', Settings, 'إعدادات المتجر'], ['activity', Activity, 'سجل النشاطات']].map(([id, Icon, label]: any) => (
+          <button key={id} className="secondary-button" onClick={() => setPage(id)}><Icon size={16} /> {label}</button>
+        ))}
       </div>
     </div>
   );
 }
 
-function OrderTable({ compact = false }: { compact?: boolean }) { return <div className="table-scroll"><table><thead><tr><th>رقم الطلب</th><th>العميل</th><th>المنتج</th><th>الإجمالي</th><th>التاريخ</th><th>الحالة</th><th /></tr></thead><tbody>{orders.concat(orders).slice(0, compact ? 4 : 8).map((o, i) => <tr key={`${o.id}-${i}`}><td><strong>{o.id}</strong></td><td><div className="customer"><span>{o.customer.charAt(0)}</span>{o.customer}</div></td><td>{o.product}</td><td><strong>${o.total}</strong></td><td className="muted">{o.date}</td><td><Status>{o.status}</Status></td><td><button className="icon-button"><MoreHorizontal size={18} /></button></td></tr>)}</tbody></table></div> }
+function OrderTable({ compact = false }: { compact?: boolean }) { return <div className="table-scroll"><table><thead><tr><th>رقم الطلب</th><th>العميل</th><th>المنتج</th><th>الإجمالي</th><th>التاريخ</th><th>الحالة</th><th /></tr></thead><tbody>{orders.concat(orders).slice(0, compact ? 4 : 8).map((o, i) => <tr key={`${o.id}-${i}`}><td><strong>{o.id}</strong></td><td><div className="customer"><span>{o.customer.charAt(0)}</span>{o.customer}</div></td><td>{o.product}</td><td><strong>{o.total}</strong></td><td className="muted">{o.date}</td><td><Status>{o.status}</Status></td><td><button className="icon-button"><MoreHorizontal size={18} /></button></td></tr>)}</tbody></table></div> }
 
 function Products({ setPage, toast }: { setPage: (p: string) => void, toast: (m: string) => void }) {
   const [querySearch, setQuerySearch] = useState('');
@@ -369,6 +404,7 @@ function AddProduct({ toast }: { toast: (m: string) => void }) {
   const [oldPrice, setOldPrice] = useState('');
   const [stock, setStock] = useState('');
   const [description, setDescription] = useState('');
+  const [shortDescription, setShortDescription] = useState('');
 
   // المتغيرات (الصور، الألوان، المقاسات)
   const [imageUrl, setImageUrl] = useState('');
@@ -377,15 +413,11 @@ function AddProduct({ toast }: { toast: (m: string) => void }) {
   const [sizes, setSizes] = useState('');
 
   // --- المتغيرات الجديدة للمواصفات (اختيارية) ---
-  const [specHeight, setSpecHeight] = useState('');
-  const [specWidth, setSpecWidth] = useState('');
-  const [specDepth, setSpecDepth] = useState('');
-  const [specHandle, setSpecHandle] = useState('');
-  const [specWeight, setSpecWeight] = useState('');
-  const [specExterior, setSpecExterior] = useState('');
-  const [specInterior, setSpecInterior] = useState('');
-  const [specCare, setSpecCare] = useState('');
-
+  const [specYarn, setSpecYarn] = useState(''); // نوع الخيط (صوف، قطن، كليم، مكرمية)
+  const [specCategory, setSpecCategory] = useState(''); // الفئة/الموسم (شتوي، صيفي، أطفال)
+  const [specTime, setSpecTime] = useState(''); // مدة التنفيذ (جاهز، أو بياخد من 3 لـ 5 أيام)
+  const [specDimensions, setSpecDimensions] = useState(''); // الأبعاد (لو بتعمل شنطة أو مفرش)
+  const [specCare, setSpecCare] = useState(''); // العناية (غسيل يدوي، ماء بارد)
   const [loading, setLoading] = useState(false);
 
   // دالة الإرسال
@@ -404,17 +436,16 @@ function AddProduct({ toast }: { toast: (m: string) => void }) {
       const colorsArray = colors.split(',').map(c => c.trim()).filter(Boolean);
       const sizesArray = sizes.split(',').map(s => s.trim()).filter(Boolean);
 
-      // تجميع المواصفات الاختيارية في كائن واحد (عشان قاعدة البيانات تبقى منظمة)
+      // تجميع المواصفات الاختيارية في كائن واحد شامل
       const specs = {
-        height: specHeight.trim(),
-        width: specWidth.trim(),
-        depth: specDepth.trim(),
-        handle: specHandle.trim(),
-        weight: specWeight.trim(),
-        exterior: specExterior.trim(),
-        interior: specInterior.trim(),
+        yarn: specYarn.trim(),
+        category: specCategory.trim(),
+        time: specTime.trim(),
+        dimensions: specDimensions.trim(),
         care: specCare.trim()
       };
+
+
 
       toast('جاري حفظ البيانات...');
       await addDoc(collection(db, 'products'), {
@@ -425,15 +456,15 @@ function AddProduct({ toast }: { toast: (m: string) => void }) {
         oldPrice: Number(oldPrice),
         stock: Number(stock),
         description,
+        shortDescription: shortDescription.trim(),
         imageUrl: imageUrl,
         gallery: galleryArray,
         colors: colorsArray,
         sizes: sizesArray,
-        specs: specs, // <--- إضافة المواصفات هنا
+        specs: specs, // <--- المواصفات الكاملة والنظيفة
         status: 'منشور',
         createdAt: serverTimestamp()
       });
-
       await addDoc(collection(db, 'activity_logs'), {
         type: 'add',
         message: `تم إضافة منتج جديد: ${name}`,
@@ -444,9 +475,8 @@ function AddProduct({ toast }: { toast: (m: string) => void }) {
 
       // تفريغ كل الحقول
       setName(''); setSku(''); setCategory(''); setPrice(''); setOldPrice(''); setStock('');
-      setDescription(''); setColors(''); setSizes(''); setImageUrl(''); setGalleryUrls('');
-      setSpecHeight(''); setSpecWidth(''); setSpecDepth(''); setSpecHandle('');
-      setSpecWeight(''); setSpecExterior(''); setSpecInterior(''); setSpecCare('');
+      setDescription(''); setShortDescription(''); setColors(''); setSizes(''); setImageUrl(''); setGalleryUrls('');
+      setSpecYarn(''); setSpecCategory(''); setSpecTime(''); setSpecDimensions(''); setSpecCare('');
 
     } catch (error) {
       console.error(error);
@@ -478,7 +508,8 @@ function AddProduct({ toast }: { toast: (m: string) => void }) {
               </select>
             </label>
           </div>
-          <label>الوصف الكامل<textarea className="tall" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="اكتب تفاصيل الشنطة ومميزاتها..." /></label>
+          <label>الوصف القصير (يظهر على كارت المنتج)<textarea maxLength={140} rows={2} value={shortDescription} onChange={(e) => setShortDescription(e.target.value)} placeholder="جملة واحدة جذابة عن أهم ميزة في المنتج..." /><small className="muted">{shortDescription.length}/140 حرف</small></label>
+          <label>الوصف التفصيلي (يظهر في صفحة المنتج)<textarea className="tall" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="الخامات، المقاسات، الألوان، طريقة الاستخدام والعناية..." /></label>
         </section>
 
         <section className="panel form-panel">
@@ -495,19 +526,15 @@ function AddProduct({ toast }: { toast: (m: string) => void }) {
           </div>
 
           {/* --- قسم المواصفات الجديد --- */}
-          <h2 style={{ marginTop: '30px', color: '#8b7355' }}>المواصفات والأبعاد (اختياري)</h2>
-          <p style={{ fontSize: '12px', color: 'var(--muted)', marginBottom: '15px' }}>يمكنك ترك أي حقل فارغاً ولن يظهر للعميل.</p>
+          <h2 style={{ marginTop: '30px', color: '#8b7355' }}>مواصفات الكروشيه (اختياري)</h2>
+          <p style={{ fontSize: '12px', color: 'var(--muted)', marginBottom: '15px' }}>اترك الحقل فارغاً ولن يظهر للعميل.</p>
           <div className="field-grid">
-            <label>الطول (Height)<input value={specHeight} onChange={(e) => setSpecHeight(e.target.value)} placeholder="مثال: 28 cm" /></label>
-            <label>العرض (Width)<input value={specWidth} onChange={(e) => setSpecWidth(e.target.value)} placeholder="مثال: 35 cm" /></label>
-            <label>العمق (Depth)<input value={specDepth} onChange={(e) => setSpecDepth(e.target.value)} placeholder="مثال: 14 cm" /></label>
-            <label>طول اليد (Handle Drop)<input value={specHandle} onChange={(e) => setSpecHandle(e.target.value)} placeholder="مثال: 18 cm" /></label>
-            <label>الوزن (Weight)<input value={specWeight} onChange={(e) => setSpecWeight(e.target.value)} placeholder="مثال: 0.8 kg" /></label>
-            <label>الخامة (Exterior)<input value={specExterior} onChange={(e) => setSpecExterior(e.target.value)} placeholder="مثال: جلد طبيعي" /></label>
-            <label>البطانة (Interior Lining)<input value={specInterior} onChange={(e) => setSpecInterior(e.target.value)} placeholder="مثال: قماش ممتاز" /></label>
-            <label>العناية (Care)<input value={specCare} onChange={(e) => setSpecCare(e.target.value)} placeholder="مثال: مسح بقطعة قماش" /></label>
+            <label>نوع الخيط<input value={specYarn} onChange={(e) => setSpecYarn(e.target.value)} placeholder="مثال: خيط صوف تركي، قطن مصري 100%" /></label>
+            <label>الفئة والموسم<input value={specCategory} onChange={(e) => setSpecCategory(e.target.value)} placeholder="مثال: ملابس شتوي، أطفال" /></label>
+            <label>مدة التنفيذ<input value={specTime} onChange={(e) => setSpecTime(e.target.value)} placeholder="مثال: جاهز للتسليم، أو يحتاج 3 أيام عمل" /></label>
+            <label>الأبعاد (للشنط والمفارش)<input value={specDimensions} onChange={(e) => setSpecDimensions(e.target.value)} placeholder="مثال: 20x30 سم (اتركه فارغاً للملابس)" /></label>
+            <label>تعليمات الغسيل والعناية<input value={specCare} onChange={(e) => setSpecCare(e.target.value)} placeholder="مثال: غسيل يدوي بماء بارد حتى لا يوبر" /></label>
           </div>
-
           <h2 style={{ marginTop: '30px' }}>الأسعار والمخزون</h2>
           <div className="field-grid">
             <label>السعر الحالي<input type="number" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="$ 0.00" /></label>
@@ -582,20 +609,20 @@ function Inventory({ toast }: { toast: (m: string) => void }) {
         ? editingProduct.gallery.split(',').map((l: string) => l.trim()).filter(Boolean)
         : editingProduct.gallery || [];
 
-      // تجميع المواصفات الجديدة قبل الحفظ
       const updatedSpecs = {
-        height: (editingProduct.specs?.height || '').trim(),
-        width: (editingProduct.specs?.width || '').trim(),
-        depth: (editingProduct.specs?.depth || '').trim(),
-        handle: (editingProduct.specs?.handle || '').trim(),
-        weight: (editingProduct.specs?.weight || '').trim(),
-        exterior: (editingProduct.specs?.exterior || '').trim(),
-        interior: (editingProduct.specs?.interior || '').trim(),
+        yarn: (editingProduct.specs?.yarn || '').trim(),
+        category: (editingProduct.specs?.category || '').trim(),
+        time: (editingProduct.specs?.time || '').trim(),
+        dimensions: (editingProduct.specs?.dimensions || '').trim(),
         care: (editingProduct.specs?.care || '').trim()
       };
 
+
+
       await updateDoc(productRef, {
         name: editingProduct.name,
+        description: editingProduct.description || '',
+        shortDescription: (editingProduct.shortDescription || '').trim(),
         price: Number(editingProduct.price),
         stock: Number(editingProduct.stock),
         category: editingProduct.category,
@@ -753,6 +780,27 @@ function Inventory({ toast }: { toast: (m: string) => void }) {
                   </select>
                 </label>
               </div>
+              <label style={{ display: 'flex', flexDirection: 'column', gap: '5px', fontWeight: 'bold', fontSize: '14px' }}>
+                الوصف القصير (يظهر على كارت المنتج)
+                <textarea
+                  style={{ padding: '10px', border: '1px solid #ddd', borderRadius: '6px', fontSize: '15px', minHeight: '56px', fontFamily: 'inherit' }}
+                  maxLength={140}
+                  value={editingProduct.shortDescription || ''}
+                  onChange={e => setEditingProduct({ ...editingProduct, shortDescription: e.target.value })}
+                  placeholder="جملة واحدة جذابة (حتى 140 حرف)"
+                />
+                <small style={{ color: '#888', fontWeight: 'normal' }}>{(editingProduct.shortDescription || '').length}/140 حرف</small>
+              </label>
+              {/* خانة الوصف التفصيلي */}
+              <label style={{ display: 'flex', flexDirection: 'column', gap: '5px', fontWeight: 'bold', fontSize: '14px' }}>
+                الوصف التفصيلي (يظهر في صفحة المنتج)
+                <textarea
+                  style={{ padding: '10px', border: '1px solid #ddd', borderRadius: '6px', fontSize: '15px', minHeight: '80px', fontFamily: 'inherit' }}
+                  value={editingProduct.description || ''}
+                  onChange={e => setEditingProduct({ ...editingProduct, description: e.target.value })}
+                  placeholder="اكتب تفاصيل المنتج هنا..."
+                />
+              </label>
 
               <div style={{ background: '#f9f9f9', padding: '15px', borderRadius: '8px', border: '1px solid #eee' }}>
                 <label style={{ display: 'flex', flexDirection: 'column', gap: '5px', fontWeight: 'bold', fontSize: '14px', marginBottom: '10px', color: '#8b7355' }}>
@@ -786,14 +834,11 @@ function Inventory({ toast }: { toast: (m: string) => void }) {
               <div style={{ background: '#f8f6f0', padding: '15px', borderRadius: '8px', border: '1px solid #eee' }}>
                 <h4 style={{ margin: '0 0 10px 0', fontSize: '15px', color: '#8b7355', fontWeight: 'bold' }}>تعديل المواصفات (اختياري)</h4>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-                  <label style={{ fontSize: '13px', fontWeight: 'bold' }}>الطول<input style={{ width: '100%', padding: '8px', border: '1px solid #ddd', borderRadius: '4px', marginTop: '4px' }} value={editingProduct.specs?.height || ''} onChange={e => setEditingProduct({ ...editingProduct, specs: { ...editingProduct.specs, height: e.target.value } })} /></label>
-                  <label style={{ fontSize: '13px', fontWeight: 'bold' }}>العرض<input style={{ width: '100%', padding: '8px', border: '1px solid #ddd', borderRadius: '4px', marginTop: '4px' }} value={editingProduct.specs?.width || ''} onChange={e => setEditingProduct({ ...editingProduct, specs: { ...editingProduct.specs, width: e.target.value } })} /></label>
-                  <label style={{ fontSize: '13px', fontWeight: 'bold' }}>العمق<input style={{ width: '100%', padding: '8px', border: '1px solid #ddd', borderRadius: '4px', marginTop: '4px' }} value={editingProduct.specs?.depth || ''} onChange={e => setEditingProduct({ ...editingProduct, specs: { ...editingProduct.specs, depth: e.target.value } })} /></label>
-                  <label style={{ fontSize: '13px', fontWeight: 'bold' }}>طول اليد<input style={{ width: '100%', padding: '8px', border: '1px solid #ddd', borderRadius: '4px', marginTop: '4px' }} value={editingProduct.specs?.handle || ''} onChange={e => setEditingProduct({ ...editingProduct, specs: { ...editingProduct.specs, handle: e.target.value } })} /></label>
-                  <label style={{ fontSize: '13px', fontWeight: 'bold' }}>الوزن<input style={{ width: '100%', padding: '8px', border: '1px solid #ddd', borderRadius: '4px', marginTop: '4px' }} value={editingProduct.specs?.weight || ''} onChange={e => setEditingProduct({ ...editingProduct, specs: { ...editingProduct.specs, weight: e.target.value } })} /></label>
-                  <label style={{ fontSize: '13px', fontWeight: 'bold' }}>الخامة<input style={{ width: '100%', padding: '8px', border: '1px solid #ddd', borderRadius: '4px', marginTop: '4px' }} value={editingProduct.specs?.exterior || ''} onChange={e => setEditingProduct({ ...editingProduct, specs: { ...editingProduct.specs, exterior: e.target.value } })} /></label>
-                  <label style={{ fontSize: '13px', fontWeight: 'bold' }}>البطانة<input style={{ width: '100%', padding: '8px', border: '1px solid #ddd', borderRadius: '4px', marginTop: '4px' }} value={editingProduct.specs?.interior || ''} onChange={e => setEditingProduct({ ...editingProduct, specs: { ...editingProduct.specs, interior: e.target.value } })} /></label>
-                  <label style={{ fontSize: '13px', fontWeight: 'bold' }}>العناية<input style={{ width: '100%', padding: '8px', border: '1px solid #ddd', borderRadius: '4px', marginTop: '4px' }} value={editingProduct.specs?.care || ''} onChange={e => setEditingProduct({ ...editingProduct, specs: { ...editingProduct.specs, care: e.target.value } })} /></label>
+                  <label style={{ fontSize: '13px', fontWeight: 'bold' }}>نوع الخيط<input style={{ width: '100%', padding: '8px', border: '1px solid #ddd', borderRadius: '4px', marginTop: '4px' }} value={editingProduct.specs?.yarn || ''} onChange={e => setEditingProduct({ ...editingProduct, specs: { ...editingProduct.specs, yarn: e.target.value } })} /></label>
+                  <label style={{ fontSize: '13px', fontWeight: 'bold' }}>الفئة/الموسم<input style={{ width: '100%', padding: '8px', border: '1px solid #ddd', borderRadius: '4px', marginTop: '4px' }} value={editingProduct.specs?.category || ''} onChange={e => setEditingProduct({ ...editingProduct, specs: { ...editingProduct.specs, category: e.target.value } })} /></label>
+                  <label style={{ fontSize: '13px', fontWeight: 'bold' }}>مدة التنفيذ<input style={{ width: '100%', padding: '8px', border: '1px solid #ddd', borderRadius: '4px', marginTop: '4px' }} value={editingProduct.specs?.time || ''} onChange={e => setEditingProduct({ ...editingProduct, specs: { ...editingProduct.specs, time: e.target.value } })} /></label>
+                  <label style={{ fontSize: '13px', fontWeight: 'bold' }}>الأبعاد<input style={{ width: '100%', padding: '8px', border: '1px solid #ddd', borderRadius: '4px', marginTop: '4px' }} value={editingProduct.specs?.dimensions || ''} onChange={e => setEditingProduct({ ...editingProduct, specs: { ...editingProduct.specs, dimensions: e.target.value } })} /></label>
+                  <label style={{ fontSize: '13px', fontWeight: 'bold', gridColumn: '1 / -1' }}>تعليمات الغسيل<input style={{ width: '100%', padding: '8px', border: '1px solid #ddd', borderRadius: '4px', marginTop: '4px' }} value={editingProduct.specs?.care || ''} onChange={e => setEditingProduct({ ...editingProduct, specs: { ...editingProduct.specs, care: e.target.value } })} /></label>
                 </div>
               </div>
 
@@ -1310,10 +1355,8 @@ export default function Page() {
       <aside className={`sidebar ${mobileOpen ? 'open' : ''}`}>
         <div className="brand">
           <div className="brand-mark"><ShoppingBag size={21} /></div>
-          <div><strong>حقيبة</strong><small>لوحة المتجر</small></div>
-          <button className="close-mobile" onClick={() => setMobileOpen(false)}><X size={19} /></button>
+          <div><strong>Rocraft</strong><small>لوحة تحكم المتجر</small></div>
         </div>
-
         <nav>
           <p className="nav-label">القائمة الرئيسية</p>
           {nav.slice(0, 1).map(n => (
@@ -1379,7 +1422,7 @@ export default function Page() {
         {page === 'coupons' && <Coupons toast={toast} />}
         {page === 'activity' && <ActivityLog />}
         {page === 'settings' && <StoreSettings toast={toast} />}
-{!['dashboard', 'products', 'add-product', 'categories', 'inventory', 'orders', 'customers', 'coupons', 'activity', 'settings'].includes(page) && <GenericPage id={page} setPage={go} />}      </div>
+        {!['dashboard', 'products', 'add-product', 'categories', 'inventory', 'orders', 'customers', 'coupons', 'activity', 'settings'].includes(page) && <GenericPage id={page} setPage={go} />}      </div>
 
       {/* نوافذ ورسائل التأكيد */}
       {mobileOpen && <div className="overlay" onClick={() => setMobileOpen(false)} />}

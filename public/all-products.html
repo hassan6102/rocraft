@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>جميع المنتجات - رو كرافت</title>
+  <meta name="description" content="اكتشف أجمل ملابس، شنط، وإكسسوارات الكروشيه اليدوية من رو كرافت.">
+  <meta name="keywords" content="Rocraft, crochet, handmade, كروشيه, هاند ميد, ملابس كروشيه, شنط كروشيه, كرافت, ملابس رجالي, ملابس أطفال">
+  <link href="assets/img/icon.jpg" rel="icon">
+  <link href="assets/img/icon.jpg" rel="apple-touch-icon">
+
+  <!-- إضافة خطوط جوجل (El Messiri للعناوين، و Tajawal للنصوص) -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/drift-zoom/drift-basic.css" rel="stylesheet">
+
+  <link href="assets/css/main.css" rel="stylesheet">
+  <link href="assets/css/rocraft-pro.css" rel="stylesheet">
+
+  <!-- تخصيص ألوان علامة رو كرافت -->
+<style>
+    :root {
+      /* الألوان الجديدة اللي اخترتها */
+      --background-color: #F7F7F3;
+      --default-color: #485D6C;
+      --heading-color: #485D6C;
+      --accent-color: #ff7e4f;
+      --surface-color: #ffffff;
+      --contrast-color: #ffffff;
+      
+      --nav-color: #485D6C;
+      --nav-hover-color: #F09A7A;
+
+      /* السر هنا: ربطنا الألوان القديمة بالجديدة عشان السلايدر يفضل شغال */
+      --osma-primary: var(--accent-color); 
+      --osma-hover: var(--nav-hover-color);
+      --osma-bg: var(--background-color); 
+    }
+
+    body {
+      background-color: var(--osma-bg) !important;
+      color: var(--default-color) !important;
+      font-family: 'Tajawal', sans-serif !important; /* الخط الناعم للقراءة */
+    }
+
+    /* تطبيق الخط الفني الكرييتف على العناوين فقط */
+    h1, h2, h3, h4, h5, h6, .product-title, .sitename, .slide-badge, .accordion-button {
+      font-family: 'El Messiri', sans-serif !important;
+    }
+
+    /* تغيير ألوان الأزرار والـ Badges للون البراند */
+    .btn-dark,
+    .btn-shop,
+    .view-all-btn {
+      background-color: var(--osma-primary) !important;
+      border-color: var(--osma-primary) !important;
+      color: #fff !important;
+    }
+
+    .btn-dark:hover,
+    .btn-shop:hover,
+    .view-all-btn:hover {
+      background-color: var(--osma-hover) !important;
+      border-color: var(--osma-hover) !important;
+    }
+
+    .price,
+    .current-price,
+    .product-price {
+      color: var(--osma-primary) !important;
+      font-weight: 700;
+    }
+
+    .discount-badge,
+    .badge.bg-danger,
+    .badge.sale,
+    .badge.bg-success {
+      background-color: var(--osma-primary) !important;
+      color: #fff !important;
+    }
+
+    .slide-badge {
+      /* لون شفاف من الخوخي يليق مع التصميم الجديد */
+      background-color: rgba(255, 126, 79, 0.1) !important; 
+      color: var(--osma-primary) !important;
+    }
+    
+    /* ألوان القائمة العلوية */
+    .header-nav nav ul li a {
+      color: var(--nav-color) !important;
+    }
+    
+    .header-nav nav ul li a.active,
+    .header-nav nav ul li a:hover {
+      color: var(--osma-primary) !important;
+    }
+
+    .product-title a:hover {
+      color: var(--osma-primary) !important;
+    }
+
+    .action-btn:hover,
+    .btn-cart:hover {
+      background-color: var(--osma-primary) !important;
+      border-color: var(--osma-primary) !important;
+      color: #fff !important;
+    }
+  </style>
+
+  <style>
+    /* كود الجذر الآمن لشريط المنتجات المتحرك */
+    .osma-marquee-wrapper {
+      overflow: hidden;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      padding: 15px 0;
+    }
+
+    .osma-marquee-track {
+      display: flex;
+      gap: 20px;
+      width: max-content;
+    }
+
+    /* الحركة للشمال */
+    .osma-marquee-track.move-left {
+      animation: marqueeLeft 30s linear infinite;
+    }
+
+    /* الحركة لليمين */
+    .osma-marquee-track.move-right {
+      animation: marqueeRight 30s linear infinite;
+    }
+
+    /* توقيف الحركة عند وقوف الماوس (UX ممتاز) */
+    .osma-marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    /* تم التعديل لتتناسب مع الاتجاه العربي (RTL) */
+    @keyframes marqueeLeft {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(50%);
+      }
+    }
+
+    @keyframes marqueeRight {
+      0% {
+        transform: translateX(50%);
+      }
+
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    /* تثبيت عرض الكارت عشان ميبظش في الحركة */
+    .osma-marquee-card {
+      width: 260px;
+      flex-shrink: 0;
+    }
+  </style>
+
+</head>
+
+<body class="index-page" dir="rtl" style="text-align: right;">
+
+  <header id="header" class="header position-fixed w-100 top-0">
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar py-2" style="background-color: var(--osma-primary); color: #fff;">
+      <div class="container-fluid container-xl">
+        <div class="announcement-slider swiper">
+          <div class="swiper-wrapper text-center" id="dynamic-announcements">
+            <div class="swiper-slide" style="font-size: 14px;">جاري تحميل العروض...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Header -->
+    <div class="main-header bg-white shadow-sm">
+      <div class="container-fluid container-xl">
+        <div class="d-flex py-3 align-items-center justify-content-between">
+
+          <!-- Logo -->
+          <a href="index.html" class="logo d-flex align-items-center text-decoration-none">
+            <!-- مسار لوجو رو كرافت الخاص بك -->
+            <img src="assets/img/icon - Copy.png" alt="Rocraft Logo" class="logo-img">
+          </a>
+
+          <!-- Desktop Navigation -->
+          <div class="header-nav d-none d-xl-block">
+            <nav id="navmenu" class="navmenu">
+              <ul class="d-flex list-unstyled mb-0 gap-4">
+                <li><a href="index.html" class="active">الرئيسية</a></li>
+                <li><a href="about.html">من نحن</a></li>
+                <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                <li><a href="shipping-info.html">معلومات الشحن</a></li>
+              </ul>
+            </nav>
+          </div>
+          <div class="header-actions d-flex align-items-center gap-3">
+
+
+
+            <i class="custom-nav-toggle d-xl-none bi bi-list fs-2 text-dark cursor-pointer" data-bs-toggle="offcanvas"
+              data-bs-target="#mobileNavSidebar" aria-controls="mobileNavSidebar"></i>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="collapse position-absolute w-100 bg-white shadow-sm" id="mobileSearch" style="top: 100%; z-index: -1;">
+      <div class="container py-3">
+        <form class="search-form">
+          <div class="input-group input-group-lg">
+            <input type="text" class="form-control border-0 bg-light" placeholder="ابحث عن المنتجات..."
+              style="box-shadow: none;">
+            <button class="btn btn-dark px-4" type="submit">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileNavSidebar" aria-labelledby="mobileNavLabel">
+      <div class="offcanvas-header border-bottom py-3">
+        <h5 class="offcanvas-title fw-bold text-dark" id="mobileNavLabel">القائمة</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body px-4 py-4">
+        <nav class="mobile-nav">
+          <ul class="list-unstyled d-flex flex-column gap-3 mb-0 fs-5">
+            <li><a href="index.html" class="text-decoration-none text-dark active">الرئيسية</a></li>
+            <li><a href="about.html" class="text-decoration-none text-dark">من نحن</a></li>
+            <li><a href="faq.html" class="text-decoration-none text-dark">الأسئلة الشائعة</a></li>
+            <li><a href="shipping-info.html" class="text-decoration-none text-dark">معلومات الشحن</a></li>
+          </ul>
+        </nav>
+
+        <div class="mt-5">
+        </div>
+      </div>
+    </div>
+
+  </header>
+
+  <main class="main rc-pad">
+    <section class="section rc-shop" style="padding-top:0">
+      <div class="container">
+        <nav class="pd-crumbs" style="margin-top:0"><a href="index.html">الرئيسية</a><i class="bi bi-chevron-left"></i><span>جميع المنتجات</span></nav>
+        <div class="section-title" style="margin-bottom:22px"><h2>جميع المنتجات</h2><p>ابحث باسم المنتج أو فلتر حسب القسم والسعر.</p></div>
+
+        <div class="rc-filters">
+          <div class="rc-search"><i class="bi bi-search"></i><input id="fSearch" type="search" placeholder="ابحث باسم المنتج..." autocomplete="off" aria-label="بحث باسم المنتج"></div>
+          <select id="fCat" aria-label="القسم"><option value="">كل الأقسام</option></select>
+          <div class="rc-range"><input id="fMin" type="number" min="0" inputmode="numeric" placeholder="أقل سعر" aria-label="أقل سعر"><span>–</span><input id="fMax" type="number" min="0" inputmode="numeric" placeholder="أعلى سعر" aria-label="أعلى سعر"></div>
+          <select id="fSort" aria-label="الترتيب">
+            <option value="">الترتيب الافتراضي</option>
+            <option value="new">الأحدث أولاً</option>
+            <option value="pa">السعر: من الأقل للأعلى</option>
+            <option value="pd">السعر: من الأعلى للأقل</option>
+            <option value="na">الاسم: من أ إلى ي</option>
+            <option value="nd">الاسم: من ي إلى أ</option>
+          </select>
+          <button id="fClear" class="rc-clear" type="button"><i class="bi bi-x-circle"></i> مسح الفلاتر</button>
+        </div>
+        <div id="fMsg" class="rc-fmsg" role="alert" hidden></div>
+        <div class="rc-count" id="fCount" aria-live="polite">جاري التحميل...</div>
+        <div class="rc-grid" id="grid"></div>
+        <div class="rc-empty" id="empty" hidden>
+          <i class="bi bi-search"></i><h4>لا توجد منتجات مطابقة</h4><p>جرّب تعديل كلمة البحث أو توسيع نطاق السعر، أو امسح الفلاتر.</p>
+          <button class="rc-clear" type="button" id="emptyClear">مسح الفلاتر</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+    <footer id="footer" class="footer rc-footer">
+    <div class="container py-5"><div class="row gy-4">
+      <div class="col-lg-5">
+        <a href="index.html" class="sitename text-decoration-none" style="color:var(--osma-primary);font-size:30px;font-weight:700">رو كرافت</a>
+        <p class="mt-3 text-muted" style="max-width:420px">قطع كروشيه مصنوعة يدوياً بعناية، من الملابس والشنط للإكسسوارات، لتناسب استخدامك اليومي ومناسباتك.</p>
+        <div class="rc-soc mt-3">
+          <a href="https://www.facebook.com/share/18bEfZnFVM/?mibextid=wwXIfr" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.instagram.com/osma_egy?igsi=cm90NTdnbWUwZ2Q1" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://www.tiktok.com/@osma.egy?_r=1&_t=ZS-999WFKWcTu1" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3"><h5>روابط سريعة</h5><ul>
+        <li><a href="index.html">الرئيسية</a></li><li><a href="about.html">من نحن</a></li>
+        <li><a href="faq.html">الأسئلة الشائعة</a></li><li><a href="shipping-info.html">معلومات الشحن</a></li></ul></div>
+      <div class="col-6 col-lg-4"><h5>تواصل معنا</h5><ul>
+        <li><i class="bi bi-geo-alt ms-2" style="color:var(--osma-primary)"></i>القاهرة، مصر</li>
+        <li><i class="bi bi-telephone ms-2" style="color:var(--osma-primary)"></i><a href="tel:+201111447123" dir="ltr">+201111447123</a></li>
+        <li><i class="bi bi-envelope ms-2" style="color:var(--osma-primary)"></i><a href="mailto:osma@gmail.com">osma@gmail.com</a></li></ul></div>
+    </div></div>
+    <div class="rc-copy text-center"><div class="container">© رو كرافت. جميع الحقوق محفوظة · تصميم <a href="https://hassan6102.github.io/portfolio/" class="fw-bold" style="color:var(--osma-primary)">Eng. Hassan Mohamed</a></div></div>
+  </footer>
+
+  <!-- Floating Customer Support Button (Modern & Clean) -->
+  <div class="cs-float" id="csFloat">
+    <button class="cs-main" id="csMain" aria-expanded="false" aria-label="Customer Support">
+      <i class="bi bi-chat-dots-fill cs-icon"></i>
+    </button>
+
+    <div class="cs-menu" id="csMenu" role="menu">
+      <a class="cs-item" href="https://wa.me/201111447123" target="_blank">
+        <i class="bi bi-whatsapp" style="color: #25D366;"></i>
+        <span>واتساب</span>
+      </a>
+      <a class="cs-item" href="tel:+201111447123">
+        <i class="bi bi-telephone-fill" style="color: var(--osma-primary);"></i>
+        <span>اتصل بنا</span>
+      </a>
+    </div>
+  </div>
+
+  <style>
+    /* Clean Support Button CSS */
+    .cs-float {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 9999;
+    }
+
+    .cs-main {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background-color: var(--osma-primary);
+      color: white;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(139, 115, 85, 0.3);
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .cs-main:hover {
+      transform: scale(1.05);
+      background-color: var(--osma-hover);
+    }
+
+    .cs-icon {
+      font-size: 24px;
+      transition: transform 0.3s ease;
+      pointer-events: none;
+      /* إضافة السطر ده */
+    }
+
+    .cs-float.open .cs-icon {
+      transform: rotate(360deg);
+      content: "\F62A";
+      /* تتغير لعلامة X في البوتستراب أيكونز لو حابب تظبطها بالجافاسكريبت، بس الدوران شغال كويس */
+    }
+
+    .cs-menu {
+      position: absolute;
+      right: 0;
+      bottom: 70px;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 10px 0;
+      width: 180px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .cs-float.open .cs-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .cs-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      font-size: 15px;
+      transition: background-color 0.2s ease;
+    }
+
+    .cs-item i {
+      font-size: 18px;
+    }
+
+    .cs-item:hover {
+      background-color: #f8f9fa;
+      color: var(--osma-primary);
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const csFloat = document.getElementById("csFloat");
+      const csMain = document.getElementById("csMain");
+
+      if (csMain && csFloat) {
+        // Toggle Menu
+        csMain.addEventListener("click", function (e) {
+          e.preventDefault(); // منع أي سلوك افتراضي
+          e.stopPropagation(); // منع انتقال الضغطة لباقي الصفحة
+          csFloat.classList.toggle("open");
+
+          // تغيير حالة aria للـ Accessibility
+          const isOpen = csFloat.classList.contains("open");
+          csMain.setAttribute("aria-expanded", isOpen);
+        });
+
+        // Close when clicking outside
+        document.addEventListener("click", function (e) {
+          if (!csFloat.contains(e.target)) {
+            csFloat.classList.remove("open");
+            csMain.setAttribute("aria-expanded", "false");
+          }
+        });
+      }
+    });
+  </script>
+  <div id="preloader" style="display: none;"></div>
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"
+    style="background-color: var(--osma-primary);"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- 2. مكتبة البوتستراب (دي اللي هتشغل زرار المنيو الجانبي) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- 3. مكتبة السلايدر -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+  <!-- 4. مكتبة AOS (عشان main.js ميزعلش ويشتغل) -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- 5. كود سحري عشان نسكت main.js في الحاجات التانية -->
+  <script>
+    window.PureCounter = function () { };
+  </script>
+  <!-- كود سحري عشان نسكت main.js ونمنع أي أخطاء -->
+  <script>
+    window.PureCounter = function () { };
+    window.Drift = function () { }; /* السطر ده هيسكت رسالة الزووم */
+  </script>
+  <!-- 6. ملف التشغيل بتاع القالب (لازم يكون آخر حاجة) -->
+  <script src="assets/js/main.js"></script>
+
+  <script type="module">
+    import { fetchProducts, loadAnnouncements, cardHtml, initOrderSheet, norm, syncHeaderHeight } from "./assets/js/rocraft-shop.js";
+    const $ = (id) => document.getElementById(id);
+    let all = [];
+    initOrderSheet((id) => all.find((p) => p.id === id));
+    syncHeaderHeight(); loadAnnouncements();
+
+    const ts = (p) => (p.createdAt && p.createdAt.toMillis ? p.createdAt.toMillis() : (p.time && p.time.toMillis ? p.time.toMillis() : 0));
+    $('grid').innerHTML = Array.from({ length: 10 }, () => '<div class="rc-skel"></div>').join('');
+
+    function apply() {
+      const q = norm($('fSearch').value).split(' ').filter(Boolean);
+      const cat = $('fCat').value;
+      let min = $('fMin').value === '' ? null : Number($('fMin').value);
+      let max = $('fMax').value === '' ? null : Number($('fMax').value);
+      const msg = $('fMsg');
+      if (min !== null && max !== null && min > max) {
+        msg.textContent = 'الحد الأدنى للسعر أكبر من الحد الأقصى، من فضلك عدّلهما.'; msg.hidden = false; min = max = null;
+      } else msg.hidden = true;
+
+      let list = all.filter((p) => {
+        const hay = norm(p.name);
+        if (q.length && !q.every((w) => hay.includes(w))) return false;
+        if (cat && p.category !== cat) return false;
+        const price = Number(p.price) || 0;
+        if (min !== null && price < min) return false;
+        if (max !== null && price > max) return false;
+        return true;
+      });
+      const sorters = {
+        pa: (a, b) => a.price - b.price, pd: (a, b) => b.price - a.price,
+        na: (a, b) => String(a.name).localeCompare(b.name, 'ar'), nd: (a, b) => String(b.name).localeCompare(a.name, 'ar'),
+        new: (a, b) => ts(b) - ts(a)
+      };
+      if (sorters[$('fSort').value]) list = [...list].sort(sorters[$('fSort').value]);
+
+      $('grid').innerHTML = list.map(cardHtml).join('');
+      $('empty').hidden = list.length > 0;
+      $('fCount').textContent = list.length === all.length ? `عدد المنتجات: ${all.length}` : `${list.length} منتج مطابق من ${all.length}`;
+    }
+    function clearAll() { ['fSearch', 'fMin', 'fMax', 'fCat', 'fSort'].forEach((i) => ($(i).value = '')); apply(); }
+
+    let t; $('fSearch').addEventListener('input', () => { clearTimeout(t); t = setTimeout(apply, 200); });
+    ['fCat', 'fMin', 'fMax', 'fSort'].forEach((i) => $(i).addEventListener('input', apply));
+    $('fClear').onclick = clearAll; $('emptyClear').onclick = clearAll;
+
+    try {
+      all = (await fetchProducts()).map((p) => ({ ...p, price: Number(p.price) || 0 }));
+      const cats = [...new Set(all.map((p) => (p.category || '').trim()).filter(Boolean))];
+      $('fCat').innerHTML = '<option value="">كل الأقسام</option>' + cats.map((c) => `<option>${c.replace(/</g, '&lt;')}</option>`).join('');
+      if (!all.length) { $('grid').innerHTML = ''; $('fCount').textContent = ''; $('empty').hidden = false; }
+      else apply();
+    } catch (e) { console.error(e); $('grid').innerHTML = ''; $('fCount').textContent = 'تعذّر تحميل المنتجات، حاول مرة أخرى.'; }
+  </script>
+</body>
+</html>
