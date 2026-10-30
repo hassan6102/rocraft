@@ -124,13 +124,13 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 15px;
-      padding: 15px 0;
+      gap: 10px;
+      padding: 8px 0;
     }
 
     .osma-marquee-track {
       display: flex;
-      gap: 20px;
+      gap: 12px;
       width: max-content;
     }
 
@@ -172,8 +172,13 @@
 
     /* تثبيت عرض الكارت عشان ميبظش في الحركة */
     .osma-marquee-card {
-      width: 260px;
+      width: 168px;
       flex-shrink: 0;
+    }
+
+    @media (max-width: 575px) {
+      .osma-marquee-card { width: 138px; }
+      .osma-marquee-track { gap: 10px; }
     }
   </style>
 
@@ -278,6 +283,8 @@
                 "delay": 5000
               },
               "effect": "fade",
+              "touchStartPreventDefault": false,
+              "touchAngle": 35,
               "fadeEffect": {
                 "crossFade": true
               },
@@ -476,10 +483,10 @@
     </section><!-- /Hero Section -->
 
     <section class="rc-trust"><div class="container"><div class="row">
-      <div class="col-6 col-lg-3"><div class="rc-trust-item"><i class="bi bi-heart"></i><div><b>صنع يدوي بالكامل</b></div></div></div>
-      <div class="col-6 col-lg-3"><div class="rc-trust-item"><i class="bi bi-truck"></i><div><b>شحن سريع</b></div></div></div>
-      <div class="col-6 col-lg-3"><div class="rc-trust-item"><i class="bi bi-arrow-repeat"></i><div><b>استرجاع 14 يوم</b></div></div></div>
-      <div class="col-6 col-lg-3"><div class="rc-trust-item"><i class="bi bi-shield-check"></i><div><b>ضمان الجودة</b></div></div></div>
+      <div class="col-6 col-lg-3"><div class="rc-trust-item"><i class="bi bi-heart"></i><div><b>صنع يدوي بالكامل</b><span>كل قطعة بحب واهتمام</span></div></div></div>
+      <div class="col-6 col-lg-3"><div class="rc-trust-item"><i class="bi bi-truck"></i><div><b>شحن سريع</b><span>خلال 2-4 أيام عمل</span></div></div></div>
+      <div class="col-6 col-lg-3"><div class="rc-trust-item"><i class="bi bi-arrow-repeat"></i><div><b>استرجاع 14 يوم</b><span>استبدال واسترجاع سهل</span></div></div></div>
+      <div class="col-6 col-lg-3"><div class="rc-trust-item"><i class="bi bi-shield-check"></i><div><b>ضمان الجودة</b><span>أجود أنواع الخيوط</span></div></div></div>
     </div></div></section>
 
     <!-- Best Sellers Section -->
@@ -795,7 +802,7 @@
           setTimeout(() => {
             if (typeof Swiper === 'undefined') return;
             new Swiper('.mySwiper', {
-              slidesPerView: 2, spaceBetween: 12, observer: true, observeParents: true,
+              slidesPerView: 2, spaceBetween: 12, touchStartPreventDefault: false, touchAngle: 35, threshold: 6, observer: true, observeParents: true,
               navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
               pagination: { el: '.swiper-pagination', clickable: true },
               breakpoints: { 576: { slidesPerView: 3 }, 992: { slidesPerView: 4, spaceBetween: 16 }, 1200: { slidesPerView: 5, spaceBetween: 16 } }

@@ -17,7 +17,10 @@ body{line-height:1.8}
 .section-title p{color:#7c8791;font-size:15px;margin:0}
 
 /* ---------- Product card (compact) ---------- */
-.rc-pad{padding-top:calc(var(--hdr,120px) + 16px)}
+/* main.css بيحط padding-top على body (100-120px) → كان بيتضاعف مع padding الصفحة */
+body.rc-page{padding-top:0!important}
+.rc-pad{padding-top:calc(var(--hdr,110px) + 14px)}
+@media(max-width:575px){.rc-pad{padding-top:calc(var(--hdr,100px) + 6px)}.pd-crumbs{margin-bottom:10px}}
 .rc-pad .product-details.section{padding-top:0;padding-bottom:40px}
 .rc-card{background:#fff;border:1px solid var(--rc-line);border-radius:14px;overflow:hidden;height:100%;display:flex;flex-direction:column;transition:box-shadow .25s,border-color .25s}
 .rc-card:hover{border-color:#f3c3b0;box-shadow:0 10px 26px rgba(72,93,108,.12)}
@@ -36,9 +39,8 @@ body{line-height:1.8}
 .rc-price s{font-size:12px;color:#a3abb2}
 .rc-order{margin-top:6px;width:100%;border:0;border-radius:10px;background:var(--osma-primary);color:#fff;font-weight:700;font-size:14px;padding:8px;cursor:pointer;transition:filter .2s}
 .rc-order:hover{filter:brightness(.93)}.rc-order:disabled{background:#c9ced2;cursor:not-allowed}
-.osma-marquee-card{width:190px}
 .osma-marquee-card .rc-desc{display:none}
-@media(max-width:575px){.rc-name{font-size:13.5px}.rc-price b{font-size:15px}.osma-marquee-card{width:160px}}
+@media(max-width:575px){.rc-name{font-size:13.5px}.rc-price b{font-size:15px}}
 @media(prefers-reduced-motion:reduce){.osma-marquee-track{animation:none!important}.rc-media img{transition:none}}
 
 /* ---------- Order sheet ---------- */
@@ -135,3 +137,18 @@ body{line-height:1.8}
 .specs-row:last-child{border:0}
 .sticky-add-to-cart{box-shadow:0 -8px 24px rgba(0,0,0,.08)}
 @media(max-width:575px){.product-info-wrapper{padding:18px}.specs-row{grid-template-columns:1fr;gap:2px}}
+
+/* ---------- كروت "الأكثر طلباً" المصغّرة ---------- */
+.osma-marquee-card .rc-card{border-radius:12px}
+.osma-marquee-card .rc-body{padding:7px 8px 9px;gap:2px}
+.osma-marquee-card .rc-name{font-size:12.5px;-webkit-line-clamp:1;min-height:0}
+.osma-marquee-card .rc-price{padding-top:2px}
+.osma-marquee-card .rc-price b{font-size:14px}.osma-marquee-card .rc-price s{font-size:11px}
+.osma-marquee-card .rc-order{margin-top:4px;padding:6px;font-size:12.5px;border-radius:8px}
+.osma-marquee-card .rc-tag{top:6px;right:6px;font-size:10px;padding:1px 7px}
+
+/* ---------- السماح بالتمرير العمودي عند لمس الصور والسلايدر ---------- */
+.rc-media,.rc-card,.rc-card img,.osma-marquee-wrapper,.osma-marquee-track,.swiper,.swiper-slide,
+.main-image-wrapper,.image-zoom-container,.main-image,.thumbnails-vertical,.thumbnails-container{touch-action:pan-y}
+.thumbnails-container{touch-action:pan-x pan-y}
+.rc-media img,.main-image{-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
